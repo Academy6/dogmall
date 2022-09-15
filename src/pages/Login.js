@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import '../css/Link.css'
 
 const Login = ()=> {
     return (
@@ -10,7 +11,7 @@ const Login = ()=> {
                 <input type='password' placeholder='비밀번호' required />   
             </form>
             <button>로그인</button>
-            <Link to="/option"><p>회원가입</p></Link>
+            <Link to="/option" className='text-link' ><p>회원가입</p></Link>
         </div>
     );
 }
