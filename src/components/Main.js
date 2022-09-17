@@ -7,6 +7,7 @@ const Main = () => (
         <ul>
             <li>
                 <Link to="/login" className='text-link'>Login</Link>
+                <Link to="/signup" className='text-link' >회원가입</Link>
             </li>
         </ul>
     </nav>
