@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Link } from "react-router-dom";
 import '../css/Link.css'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = ()=> {
     const [loginID, setLoginID] = useState('');
@@ -31,6 +32,17 @@ const Login = ()=> {
         } else if (regexId.test(loginID) === true && regexPassword.test(loginPassword) === false) {
             alert(`비밀번호를 다시 입력하세요`)
         }
+        const auth = getAuth()
+        signInWithEmailAndPassword(auth, loginID, loginPassword)
+        .then((userCredential)=> {
+            const user = userCredential.user
+            console.log('로그인 성공')
+        })
+        .catch((error)=> {
+            const errorCode = error.code
+            const errorMessage = error.message
+            console.log('로그인 실패')
+        })
     }
     return (
         <div>

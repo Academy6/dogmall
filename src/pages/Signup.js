@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authService } from "../fbase";
+import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
   
 
@@ -19,14 +20,28 @@ const Signup = ()=> {
     }
     const onClick = async(event)=> {
         const auth = getAuth()
+        const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+        const regexPassword = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/
+
+        if (regexId.test(newId) === true && regexPassword.test(newPassword) === true) {
+            alert(`ID:${newId}\nPassword:${newPassword}`)
+            event.preventDefault()
+        } else if (regexId.test(newId) === false && regexPassword.test(newPassword) === true) {
+            alert(`아이디를 다시 입력하세요`)
+        } else if (regexId.test(newId) === true && regexPassword.test(newPassword) === false) {
+            alert(`비밀번호를 다시 입력하세요`)
+        }
+
         createUserWithEmailAndPassword(auth, newId, newPassword)
             .then((userCredential)=> {
+                const user =userCredential.user
                 console.log(userCredential)
+                console.log(user)
             })
             .cath((error)=> {
-                console.log(error)
                 const errorCode = error.code
                 const errorMessage = error.message
+                console.log(`${errorCode}\n${errorMessage}`)
             })
         console.log(`newID:${newId}\nnewPassword:${newPassword}`)
     }

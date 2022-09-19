@@ -6,6 +6,9 @@ const Main = () => (
     <nav>
         <ul>
             <li>
+                <div>
+                    <h1>메인입니다.</h1>
+                </div>
                 <Link to="/login" className='text-link'>Login</Link>
                 <Link to="/signup" className='text-link' >회원가입</Link>
             </li>
