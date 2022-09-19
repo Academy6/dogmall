@@ -5,3 +5,6 @@ li {
     color: #000;
     text-decoration: none;
 }
+input {
+    width: 150px;
+}

@@ -39,9 +39,7 @@ const Login = ()=> {
                 <input type='text' placeholder='아이디' name='Id' onChange={onChange} value={loginID} required  />   
                 <input type='password' placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required />  
             </form>
-            <form>
-                <button onClick={onClick}>로그인</button>
-            </form>
+            <button onClick={onClick}>로그인</button>
             <p>아직 회원이 아니라면? <Link to='/signup' className='text-link'>회원가입</Link></p>
         </div>
     );
