@@ -23,8 +23,13 @@ const Login = ()=> {
         const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
         // Password 특수문자 포함 체크 regex 정규식
         const regexPassword = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/
+        // 한글만 가능한 경우
+        // const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
         console.log(`ID:${loginID}\nPassword:${loginPassword}`)
         console.log(`아이디:${regexId.test(loginID)}\n비번:${regexPassword.test(loginPassword)}`)
+        // if (korean.test(loginID) === true) {
+        //     alert('한글 제외 바람')
+        // }
 
         if (regexId.test(loginID) === true && regexPassword.test(loginPassword) === true) {
             alert(`ID:${loginID}\nPassword:${loginPassword}`)
