@@ -1,11 +1,13 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import '../css/Link.css'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const Login = ()=> {
     const [loginID, setLoginID] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
+    
     
     const onChange = (event)=> {
         const {target: {name, value}} = event
@@ -16,7 +18,7 @@ const Login = ()=> {
         }
         
     }
-    const onClick = (event)=> {
+    const OnClick = (event)=> {
         // ID 이메일 체크 regex 정규식
         const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
         // Password 특수문자 포함 체크 regex 정규식
@@ -36,12 +38,10 @@ const Login = ()=> {
         signInWithEmailAndPassword(auth, loginID, loginPassword)
         .then((userCredential)=> {
             const user = userCredential.user
-            console.log('로그인 성공')
         })
         .catch((error)=> {
             const errorCode = error.code
-            const errorMessage = error.message
-            console.log('로그인 실패')
+            const errorMessage = ['존재하지 않는 아이디입니다.', '존재하지 않는 비밀번호입니다.']
         })
     }
     return (
@@ -51,7 +51,7 @@ const Login = ()=> {
                 <input type='text' placeholder='아이디' name='Id' onChange={onChange} value={loginID} required  />   
                 <input type='password' placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required />  
             </form>
-            <button onClick={onClick}>로그인</button>
+            <button onClick={OnClick}>로그인</button>
             <p>아직 회원이 아니라면? <Link to='/signup' className='text-link'>회원가입</Link></p>
         </div>
     );

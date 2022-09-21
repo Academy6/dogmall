@@ -35,13 +35,11 @@ const Signup = ()=> {
         createUserWithEmailAndPassword(auth, newId, newPassword)
             .then((userCredential)=> {
                 const user =userCredential.user
-                console.log(userCredential)
-                console.log(user)
             })
             .cath((error)=> {
                 const errorCode = error.code
                 const errorMessage = error.message
-                console.log(`${errorCode}\n${errorMessage}`)
+                console.log(errorCode)
             })
         console.log(`newID:${newId}\nnewPassword:${newPassword}`)
     }
@@ -51,7 +49,7 @@ const Signup = ()=> {
                 <input type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
                 <input type='password' name='newPassword' value={newPassword} onChange={CreateNewAccount} placeholder='비밀번호' required/>
             </form>
-            <button onClick={onClick} name='click'>생성</button>
+            <button id='createBtn' onClick={onClick} name='click'>생성</button>
             <p>이미 회원이면? <Link to='/login' className='text-link'>로그인</Link></p>
         </div>
     );
