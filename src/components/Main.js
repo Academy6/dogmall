@@ -11,6 +11,7 @@ const Main = () => (
                 </div>
                 <Link to="/login" className='text-link'>Login</Link>
                 <Link to="/signup" className='text-link' >회원가입</Link>
+                <Link to="/conversation" className='text-link'>리뷰</Link>
             </li>
         </ul>
     </nav>
