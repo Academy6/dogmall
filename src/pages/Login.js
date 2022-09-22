@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const Login = ()=> {
     const [loginID, setLoginID] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
-    
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
     
     const onChange = (event)=> {
         const {target: {name, value}} = event
@@ -32,7 +33,6 @@ const Login = ()=> {
         // }
 
         if (regexId.test(loginID) === true && regexPassword.test(loginPassword) === true) {
-            alert(`ID:${loginID}\nPassword:${loginPassword}`)
             event.preventDefault()
         } else if (regexId.test(loginID) === false && regexPassword.test(loginPassword) === true) {
             alert(`아이디를 다시 입력하세요`)
@@ -43,10 +43,12 @@ const Login = ()=> {
         signInWithEmailAndPassword(auth, loginID, loginPassword)
         .then((userCredential)=> {
             const user = userCredential.user
+            if (Boolean(user) === true) {
+                navigate('/')
+            }
         })
         .catch((error)=> {
-            const errorCode = error.code
-            const errorMessage = ['존재하지 않는 아이디입니다.', '존재하지 않는 비밀번호입니다.']
+            setError(error.message)
         })
     }
     return (
@@ -54,7 +56,8 @@ const Login = ()=> {
             Log In TEST
             <form>
                 <input type='text' placeholder='아이디' name='Id' onChange={onChange} value={loginID} required  />   
-                <input type='password' placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required />  
+                <input type='password' placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required />
+                {error}
             </form>
             <button onClick={OnClick}>로그인</button>
             <p>아직 회원이 아니라면? <Link to='/signup' className='text-link'>회원가입</Link></p>
