@@ -10,6 +10,9 @@ const Signup = ()=> {
     const [error, setError] = useState("")
     const navigate = useNavigate()
 
+    const onSubmit = (e)=> {
+        e.preventDefault()
+    }
     const CreateNewAccount = (event)=> {
         const {target: {name, value}} = event
         
@@ -24,19 +27,17 @@ const Signup = ()=> {
         const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
         const regexPassword = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/
 
-        if (regexId.test(newId) === true && regexPassword.test(newPassword) === true) {
-            event.preventDefault()
-        } else if (regexId.test(newId) === false && regexPassword.test(newPassword) === true) {
-            alert(`아이디를 다시 입력하세요`)
-        } else if (regexId.test(newId) === true && regexPassword.test(newPassword) === false) {
-            alert(`비밀번호를 다시 입력하세요`)
-        }
-
         createUserWithEmailAndPassword(auth, newId, newPassword)
             .then((userCredential)=> {
-                const user =userCredential.user
-                if (Boolean(user) === true) {
+                const user = userCredential.user
+                if (Boolean(user) === true && regexId.test(newId) === true && regexPassword.test(newPassword) === true) {
                     navigate('/login')
+                } else if (regexId.test(newId) === false && regexPassword.test(newPassword) === true) {
+                    event.preventDefault()
+                    alert(`아이디를 다시 입력하세요`)
+                } else if (regexId.test(newId) === true && regexPassword.test(newPassword) === false) {
+                    event.preventDefault()
+                    alert(`비밀번호를 다시 입력하세요`)
                 }
             })
             .catch((error)=> {
@@ -45,7 +46,7 @@ const Signup = ()=> {
     }
     return (
         <div>
-            <form>
+            <form onSubmit={onSubmit}>
                 <input type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
                 <input type='password' name='newPassword' value={newPassword} onChange={CreateNewAccount} placeholder='비밀번호' required/>
                 {error}
