@@ -9,6 +9,12 @@ import { useNavigate } from 'react-router-dom';
 const Header = (props)=> {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [init, setInit] = useState(false)
+    const navigate = useNavigate()
+
+    const onLogoutClick = () =>{
+        authService.signOut()
+        navigate('/')
+    }
     useEffect(()=> {
         authService.onAuthStateChanged((user)=> {
             if(user.emailVerified) {
@@ -34,7 +40,7 @@ const Header = (props)=> {
                         <li><Link to ='/cart/5' className='text-link'>장바구니</Link></li>
                         {/* <li>{init ? <Router isLoggedIn={isLoggedIn} /> : '!'}</li> */}
                         <li><Link to="/login" className='text-link'>login</Link></li>
-                        <li><Link to='/logout' className='text-link'>logout</Link></li>
+                        <li onClick={onLogoutClick} className='text-link'>logout</li>
                         <li><Link to="/signup" className='text-link' >회원가입</Link></li>
                     </ul>
                 </div>
