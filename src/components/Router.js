@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Conversation from '../pages/Conversation';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
 import Signup from '../pages/Signup';
@@ -21,7 +20,6 @@ const Router = ({isLoggedIn, userObj})=> {
                 <Route path='/' element={<Main />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
-                <Route path='/conversation' element={<Conversation />} />
                 <Route path='logout' element={<Logout />} />
 				<Route path="/product/:1" element={<Product />} />
 				{/* 상단에 위치하는 라우트들의 규칙을 모두 확인, 일치하는 라우트가 없는경우 처리 */}

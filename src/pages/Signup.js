@@ -26,23 +26,22 @@ const Signup = ()=> {
         const auth = getAuth()
         const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
         const regexPassword = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/
-
-        createUserWithEmailAndPassword(auth, newId, newPassword)
+        if (regexId.test(newId) === true && regexPassword.test(newPassword) === true) {
+            createUserWithEmailAndPassword(auth, newId, newPassword)
             .then((userCredential)=> {
                 const user = userCredential.user
-                if (Boolean(user) === true && regexId.test(newId) === true && regexPassword.test(newPassword) === true) {
-                    navigate('/login')
-                } else if (regexId.test(newId) === false && regexPassword.test(newPassword) === true) {
-                    event.preventDefault()
-                    alert(`아이디를 다시 입력하세요`)
-                } else if (regexId.test(newId) === true && regexPassword.test(newPassword) === false) {
-                    event.preventDefault()
-                    alert(`비밀번호를 다시 입력하세요`)
-                }
             })
             .catch((error)=> {
                 setError(error.message)
             })
+            navigate('/login')
+        } else if (regexId.test(newId) === false && regexPassword.test(newPassword) === true) {
+            event.preventDefault()
+            alert(`아이디를 다시 입력하세요`)
+        } else if (regexId.test(newId) === true && regexPassword.test(newPassword) === false) {
+            event.preventDefault()
+            alert(`비밀번호를 다시 입력하세요`)
+        }
     }
     return (
         <div>
