@@ -2,11 +2,12 @@ import React, { Component, useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import '../css/Link.css'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { authService } from '../fbase';
 import { useNavigate } from 'react-router-dom';
 
 const Login = ()=> {
-    const [loginID, setLoginID] = useState('');
-    const [loginPassword, setLoginPassword] = useState('');
+    const [loginID, setLoginID] = useState('')
+    const [loginPassword, setLoginPassword] = useState('')
     const [error, setError] = useState('')
     const navigate = useNavigate()
     
@@ -44,6 +45,10 @@ const Login = ()=> {
         .then((userCredential)=> {
             const user = userCredential.user
             if (Boolean(user) === true) {
+                authService.onAuthStateChanged((user)=> {
+                    console.log(user.emailVerified)
+                })
+                console.log(user)
                 navigate('/')
             }
         })
@@ -51,15 +56,19 @@ const Login = ()=> {
             setError(error.message)
         })
     }
+    const onSubmit = (e)=> {
+        e.preventDefault()
+    }
     return (
         <div>
             Log In TEST
-            <form>
+            <form onSubmit={onSubmit}>
                 <input type='text' placeholder='아이디' name='Id' onChange={onChange} value={loginID} required  />   
                 <input type='password' placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required />
+                <button onClick={OnClick}>로그인</button>
                 {error}
             </form>
-            <button onClick={OnClick}>로그인</button>
+
             <p>아직 회원이 아니라면? <Link to='/signup' className='text-link'>회원가입</Link></p>
         </div>
     );
