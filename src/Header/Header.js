@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Router from '../components/Router';
 import { authService } from '../fbase'
-import Logout from '../pages/Logout';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -11,22 +9,39 @@ const Header = (props)=> {
     const [init, setInit] = useState(false)
     const navigate = useNavigate()
 
-    const onLogoutClick = () =>{
-        authService.signOut()
-        navigate('/')
-    }
     useEffect(()=> {
         authService.onAuthStateChanged((user)=> {
-            if(user.emailVerified) {
+            if(user) {
                 setIsLoggedIn(true)
                 console.log(isLoggedIn)
             } else {
                 setIsLoggedIn(false)
                 console.log(isLoggedIn)
             }
-            setInit(true)
         })
-    },[])
+    })
+    const onLogoutClick = () =>{
+        authService.onAuthStateChanged((user)=> {
+            // console.log(Boolean(user))
+            if (Boolean(user)) {
+                authService.signOut()
+                navigate('/')
+            } else {
+                alert('로그인 상태 아님')
+            }
+        })
+    }
+    const onClick = ()=> {
+        authService.onAuthStateChanged((user)=> {
+            // console.log(Boolean(user))
+            if (Boolean(user)) {
+                navigate('/comunity/4')
+            } else {
+                alert('로그인 해주세여')
+                navigate('/login')
+            }
+        })
+    }
     return (
 		<div>
             {/* Navbar */}
@@ -36,7 +51,7 @@ const Header = (props)=> {
                     <ul>
                         <li><Link to ='/upload/2' className='text-link'>상품등록하기</Link></li>
                         <li><Link to ='/product2/3' className='text-link'>상품보기</Link></li>
-                        <li><Link to ='/comunity/4' className='text-link'>커뮤니티</Link></li>
+                        <li><Link to ='/comunity/4' onClick={onClick} className='text-link'>커뮤니티</Link></li>
                         <li><Link to ='/cart/5' className='text-link'>장바구니</Link></li>
                         {/* <li>{init ? <Router isLoggedIn={isLoggedIn} /> : '!'}</li> */}
                         <li><Link to="/login" className='text-link'>login</Link></li>

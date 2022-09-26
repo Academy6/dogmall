@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from '../pages/Login';
-import Logout from '../pages/Logout';
 import Signup from '../pages/Signup';
 import Main from '../Main/Main';
 import Product from '../Main/Product';
@@ -43,7 +42,6 @@ const Router = ({isLoggedIn})=> {
                 <Route path='/' element={<Main />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
-                <Route path='logout' element={<Logout />} />
 				<Route path="/product/:1" element={<Product />} />
 				<Route path="/product2/:2" element={<Product2 />} />
 				<Route path="/upload/:3" element={<Upload />} />

@@ -12,3 +12,7 @@ li {
 input {
     width: 150px;
 }
+#logout {
+    border: none;
+    background-color: #fff;
+}
