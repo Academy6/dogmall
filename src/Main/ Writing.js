@@ -14,12 +14,18 @@ const  Writing = ()=> {
         setWrite(value)
     }
     const onClick = async(event)=> {
+        const db = dbService
         console.log(write)
-        await dbService.collection('write').add({
+        await db.collection('write').add({
             write,
             createdAt: Date.now()
         })
         setWrite('')
+        db.collection('write').get().then((write)=> {
+            write.forEach((doc)=> {
+                console.log(doc.data())
+            })
+        })
     }
 
     return (
