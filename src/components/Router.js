@@ -8,6 +8,7 @@ import Product2 from '../Main/Product2';
 import Upload from '../Main/Upload';
 import Comunity from '../Main/Comunity';
 import Cart from '../Main/Cart';
+import Writing from '../Main/ Writing';
 import Header from '../Header/Header';
 import { Footer } from 'antd/lib/layout/layout';
 
@@ -47,6 +48,7 @@ const Router = ({isLoggedIn})=> {
 				<Route path="/upload/:3" element={<Upload />} />
 				<Route path="/comunity/:4" element={<Comunity />} />
 				<Route path="/Cart/:5" element={<Cart />} />
+                <Route path="/writing" element={<Writing />} />
             </Routes>
             <Footer />
         </BrowserRouter>
