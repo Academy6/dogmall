@@ -1,11 +1,9 @@
 import React, { Component, useEffect } from 'react';
 import { useState } from 'react';
-import { uid } from 'uid';
 import { dbService } from '../fbase'
 import WriteButton from './WriteButton';
 
 const  Writing = ({userObj})=> {
-    console.log(userObj)
     const [write, setWrite] = useState('')
     const [writes, setWrites] = useState([])
 
@@ -32,9 +30,10 @@ const  Writing = ({userObj})=> {
         await db.collection('user').add({
             text: write,
             createdAt: Date.now(),
-            // creatorId: userObj.uid
+            creatorId: userObj.uid
         })
         setWrite('')
+        console.log(userObj.uid)
     }
 
     return (
@@ -43,11 +42,11 @@ const  Writing = ({userObj})=> {
                 <input value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
                 <button onClick={onClick}>작성</button>
             </form>
-            {/* <div>
+            <div>
                 {writes.map((write)=> {
                     <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.uid} />
                 })}
-            </div> */}
+            </div>
         </div>
     );
 }
