@@ -30,10 +30,9 @@ const  Writing = ({userObj})=> {
         await db.collection('user').add({
             text: write,
             createdAt: Date.now(),
-            creatorId: userObj.uid
+            creatorId: userObj.email
         })
         setWrite('')
-        console.log(userObj.uid)
     }
 
     return (
@@ -44,7 +43,7 @@ const  Writing = ({userObj})=> {
             </form>
             <div>
                 {writes.map((write)=> {
-                    <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.uid} />
+                    <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
                 })}
             </div>
         </div>
