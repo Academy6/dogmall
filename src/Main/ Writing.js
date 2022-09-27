@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { NavDropdown } from 'react-bootstrap';
 import { dbService } from '../fbase'
 import { v4 as uuidv4 } from 'react-uuid'
+import WriteButton from './WriteButton';
 
 const  Writing = ( {userObj} )=> {
     const [write, setWrite] = useState('')
@@ -44,9 +45,7 @@ const  Writing = ( {userObj} )=> {
             </form>
             <div>
                 {writes.map((write)=> {
-                    <div key={write.id}>
-                        <h4>{write.write}</h4>
-                    </div>
+                    <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.uid} />
                 })}
             </div>
         </div>

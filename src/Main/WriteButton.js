@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-const WriteButton = ({ writeObj, isOnwer })=> {
+const WriteButton = ({ writeObj, isOwner })=> {
     return (
         <div>
-            <h4>{rweetObj.text}</h4>
+            <h4>{writeObj.text}</h4>
             {isOwner && (
             <>
                 <button>Delete Nweet</button>
