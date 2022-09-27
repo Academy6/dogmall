@@ -27,11 +27,12 @@ const Router = ()=> {
                 setIsLoggedIn(false)
             }
             setInit(true)
+            console.log(userObj.uid)
         })
     }, [])
     return (
         <BrowserRouter>
-        {init ? <Header isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing..." }
+        {init ? <Header isLoggedIn={isLoggedIn} /> : "Initializing..." }
             <Routes>
                 <Route path='/' element={<Main />} />
                 <Route path='/login' element={<Login />} />
@@ -41,7 +42,7 @@ const Router = ()=> {
 				<Route path="/upload/:3" element={<Upload />} />
 				<Route path="/comunity/:4" element={<Comunity />} />
 				<Route path="/Cart/:5" element={<Cart />} />
-                <Route path="/writing" element={<Writing />} />
+                <Route path="/writing" userObj={userObj} element={<Writing />} />
             </Routes>
             <Footer />
         </BrowserRouter>

@@ -3,9 +3,9 @@ import {Table} from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import { dbService } from '../fbase';
 
-const Comunity = (props) => {
+const Comunity = () => {
   const navigate = useNavigate()
-  
+
   const onClick = ()=> {
     navigate('/writing')
   }
