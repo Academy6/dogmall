@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { Component, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import Main from '../Main/Main';
@@ -11,11 +11,27 @@ import Cart from '../Main/Cart';
 import Writing from '../Main/ Writing';
 import Header from '../Header/Header';
 import { Footer } from 'antd/lib/layout/layout';
+import { authService } from '../fbase';
 
-const Router = ({isLoggedIn})=> {
+const Router = ()=> {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [init, setInit] = useState(false)
+    const [userObj, setUserObj] = useState(null)
+
+    useEffect(()=> {
+        authService.onAuthStateChanged((user)=> {
+            if (user) {
+                setIsLoggedIn(true)
+                setUserObj(user)
+            } else {
+                setIsLoggedIn(false)
+            }
+            setInit(true)
+        })
+    }, [])
     return (
         <BrowserRouter>
-        <Header />
+        {init ? <Header isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing..." }
             <Routes>
                 {/* {isLoggedIn ? (
                     <>
