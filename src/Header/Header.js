@@ -16,7 +16,10 @@ const Header = ({isLoggedIn})=> {
             if (user) {
                 
             } else {
-                navigate('/login')
+                const ok = window.confirm(`로그인이 필요한 화면입니다. 로그인하시겠습니까?`)
+                if (ok) {
+                    navigate('/login')
+        }
             }
         })
     }
