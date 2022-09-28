@@ -6,9 +6,8 @@ import Main from '../Main/Main';
 import Product from '../Main/Product';
 import Product2 from '../Main/Product2';
 import Upload from '../Main/Upload';
-import Comunity from '../Main/Comunity';
 import Cart from '../Main/Cart';
-import Writing from '../Main/ Writing';
+import Comunity from '../Main/Comunity';
 import Header from '../Header/Header';
 import { Footer } from 'antd/lib/layout/layout';
 import { authService } from '../fbase';
@@ -40,9 +39,8 @@ const Router = ()=> {
 				<Route path="/product/:1" element={<Product />} />
 				<Route path="/product2/:2" element={<Product2 />} />
 				<Route path="/upload/:3" element={<Upload />} />
-				<Route path="/comunity/:4" element={<Comunity />} />
 				<Route path="/Cart/:5" element={<Cart />} />
-                <Route path="/writing" element={<Writing userObj={userObj}/>} />
+                <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
             </Routes>
             <Footer />
         </BrowserRouter>
