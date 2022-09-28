@@ -4,7 +4,7 @@ import { dbService } from '../fbase'
 import WriteButton from './WriteButton';
 
 const  Writing = ({userObj})=> {
-    const [write, setWrite] = useState('')
+    const [write, setWrite] = useState("")
     const [writes, setWrites] = useState([])
 
     useEffect(()=> {
@@ -26,13 +26,12 @@ const  Writing = ({userObj})=> {
     }
     const onClick = async()=> {
         const db = dbService
-        console.log(write)
-        await db.collection('user').add({
+        await db.collection("user").add({ 
             text: write,
             createdAt: Date.now(),
             creatorId: userObj.email
         })
-        setWrite('')
+        setWrite("")
     }
 
     return (
@@ -42,9 +41,9 @@ const  Writing = ({userObj})=> {
                 <button onClick={onClick}>작성</button>
             </form>
             <div>
-                {writes.map((write)=> {
+                {writes.map((write)=> (
                     <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
-                })}
+                ))}
             </div>
         </div>
     );

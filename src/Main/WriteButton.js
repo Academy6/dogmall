@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { dbService } from '../fbase';
 
 const WriteButton = ({ writeObj, isOwner })=> {
@@ -35,21 +35,22 @@ const WriteButton = ({ writeObj, isOwner })=> {
         <div>
             {
                 editing ? (
-                <>
-                <form onSubmit={onSubmit}>
-                    <input type="text" placeholder="수정하세요" value={newWrite} required onChange={onChange} />
-                    <button onClick={onClick}>게시</button>
-                </form>
-                <button onClick={toggleEditing}>Cancel</button>
-                </>
-                ) : (
-                    <><h4>{writeObj.text}</h4>
-                {isOwner && (
                     <>
-                    <button onClick={onDeleteClick}>Delete Nweet</button>
-                    <button onClick={toggleEditing}>Edit Nweet</button>
+                        <form onSubmit={onSubmit}>
+                            <input type="text" placeholder="수정하세요" value={newWrite} required onChange={onChange} />
+                            <button onClick={onClick}>게시</button>
+                        </form>
+                        <button onClick={toggleEditing}>Cancel</button>
                     </>
-                )}
+                ) : (
+                    <>
+                        <h4>{writeObj.text}</h4>
+                        {isOwner && (
+                            <>
+                                <button onClick={onDeleteClick}>Delete Nweet</button>
+                                <button onClick={toggleEditing}>Edit Nweet</button>
+                            </>
+                        )}
                 </>
                 )
             }
