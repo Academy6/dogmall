@@ -8,11 +8,10 @@ function Cart(props){
 
     return(
       <div>
-        gd
+        gf
       </div>
-
       // <div>
-      //   <Table>
+      //     <Table>
       //         <thead>
       //           <tr>
       //             <th>#</th>
@@ -52,7 +51,7 @@ function Cart(props){
       //           }
               
       //           </tbody>
-      //   </Table>
+      // </Table>
       // </div>
     )
 }

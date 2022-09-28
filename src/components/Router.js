@@ -5,7 +5,7 @@ import Signup from '../pages/Signup';
 import Main from '../Main/Main';
 import Product from '../Main/Product';
 import Product2 from '../Main/Product2';
-import Upload from '../Main/Upload';
+import Upload from '../Upload/Upload';
 import Cart from '../Main/Cart';
 import Comunity from '../Main/Comunity';
 import Header from '../Header/Header';

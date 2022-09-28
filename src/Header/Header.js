@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authService } from '../fbase'
+import {NavLink} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -31,27 +32,27 @@ const Header = ({isLoggedIn})=> {
                 <div className="inner">
                     {isLoggedIn ?(
                         <>
-                            <h1><Link to ='/' className='text-link'>PetShop</Link></h1>
+                            <h1><NavLink to ='/' className='text-link'>PetShop</NavLink></h1>
                             <ul>
-                                <li><Link to ='/upload/2' className='text-link'>상품등록하기</Link></li>
-                                <li><Link to ='/product2/3' className='text-link'>상품보기</Link></li>
-                                <li><Link to ='/comunity/4' name='comunity' className='text-link'>커뮤니티</Link></li>
-                                <li><Link to ='/cart/5' className='text-link'>장바구니</Link></li>
+                                <li><NavLink to ='/upload/2' className='text-link'>상품등록하기</NavLink></li>
+                                <li><NavLink to ='/product2/3' className='text-link'>상품보기</NavLink></li>
+                                <li><NavLink to ='/comunity/4' name='comunity' className='text-link'>커뮤니티</NavLink></li>
+                                <li><NavLink to ='/cart/5' className='text-link'>장바구니</NavLink></li>
                                 {/* <li>{init ? <Router isLoggedIn={isLoggedIn} /> : '!'}</li> */}
-                                <li onClick={onClickLogOut} className='text-link'>logout</li>
+                                <li><NavLink to='#' onClick={onClickLogOut} className='text-link'>logout</NavLink></li>
                             </ul>
                         </>
                     ) : (
                         <>
-                            <h1><Link to ='/' className='text-link'>PetShop</Link></h1>
+                            <h1><NavLink to ='/' className='text-link'>PetShop</NavLink></h1>
                             <ul>
-                                <li><Link to ='/upload/2' onClick={onClick} className='text-link'>상품등록하기</Link></li>
-                                <li><Link to ='/product2/3' className='text-link'>상품보기</Link></li>
-                                <li><Link to ='/comunity/4' onClick={onClick} className='text-link'>커뮤니티</Link></li>
-                                <li><Link to ='/cart/5' onClick={onClick} className='text-link'>장바구니</Link></li>
+                                <li><NavLink to ='/upload/2' onClick={onClick} className='text-link'>상품등록하기</NavLink></li>
+                                <li><NavLink to ='/product2/3' className='text-link'>상품보기</NavLink></li>
+                                <li><NavLink to ='/comunity/4' onClick={onClick} className='text-link'>커뮤니티</NavLink></li>
+                                <li><NavLink to ='/cart/5' onClick={onClick} className='text-link'>장바구니</NavLink></li>
                                 {/* <li>{init ? <Router isLoggedIn={isLoggedIn} /> : '!'}</li> */}
-                                <li><Link to="/login" className='text-link'>login</Link></li>
-                                <li><Link to="/signup" className='text-link' >회원가입</Link></li>
+                                <li><NavLink to="/login" className='text-link'>login</NavLink></li>
+                                <li><NavLink to="/signup" className='text-link' >회원가입</NavLink></li>
                             </ul>
                         </>
                     )}
