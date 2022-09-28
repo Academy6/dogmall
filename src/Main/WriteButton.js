@@ -43,15 +43,15 @@ const WriteButton = ({ writeObj, isOwner })=> {
                         <button onClick={toggleEditing}>Cancel</button>
                     </>
                 ) : (
-                    <>
+                    <div>
                         <h4>{writeObj.text}</h4>
                         {isOwner && (
-                            <>
+                            <div>
                                 <button onClick={onDeleteClick}>Delete Nweet</button>
                                 <button onClick={toggleEditing}>Edit Nweet</button>
-                            </>
+                            </div>
                         )}
-                </>
+                    </div>
                 )
             }
         </div>

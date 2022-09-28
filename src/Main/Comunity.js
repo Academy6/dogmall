@@ -2,6 +2,7 @@ import React, { Component, useEffect } from 'react';
 import { useState } from 'react';
 import { dbService } from '../fbase'
 import WriteButton from './WriteButton';
+import "../css/comunity.css"
 
 const  Comunity = ({userObj})=> {
     const [write, setWrite] = useState("")
@@ -36,15 +37,15 @@ const  Comunity = ({userObj})=> {
 
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <input value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
-                <button onClick={onClick}>작성</button>
-            </form>
-            <div>
+            <div className='comunity'>
                 {writes.map((write)=> (
                     <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
                 ))}
             </div>
+            <form onSubmit={onSubmit}>
+                <input value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
+                <button onClick={onClick}>작성</button>
+            </form>
         </div>
     );
 }
