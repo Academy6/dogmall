@@ -40,11 +40,9 @@ const  Comunity = ({userObj})=> {
         <div>
             <div className='comunity'>
                 <StyledAllwaysScrollSection>
-                    <div>
-                        {writes.map((write)=> (
-                            <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
-                        ))}
-                    </div>
+                    {writes.map((write)=> (
+                        <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
+                    ))}
                 </StyledAllwaysScrollSection>
             </div>
             <form onSubmit={onSubmit}>
