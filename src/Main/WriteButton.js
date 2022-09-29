@@ -1,15 +1,27 @@
 import React, { Component, useEffect, useState } from 'react';
 import { dbService } from '../fbase';
+import '../css/Link.css'
 
 const WriteButton = ({ writeObj, isOwner })=> {
     const [editing, setEditing] = useState(false)
     const [newWrite, setNewWrite] = useState(writeObj.text)
+    const [timer, setTimer] = useState('0')
 
     const onDeleteClick = async()=> {
         const ok = window.confirm(`정말로 삭제하시겠습니까?`)
         if (ok) {
             await dbService.doc(`user/${writeObj.id}`).delete()
         }
+    }
+    const currentTimer = ()=> {
+        const date = new Date()
+        const hours = String(date.getHours()).padStart(2, '0')
+        const min = String(date.getMinutes()).padStart(2, '0')
+        return (`${hours}:${min}`)
+    }
+    const currentTime = ()=> {
+        currentTime = currentTimer()
+        setTimer(timer)
     }
     const toggleEditing = () => {
         setEditing((prev) => !prev);
@@ -44,7 +56,14 @@ const WriteButton = ({ writeObj, isOwner })=> {
                     </>
                 ) : (
                     <div>
-                        <h4>{writeObj.text}</h4>
+                        <ul id='time'>
+                            <li>
+                                <h4>{writeObj.text}</h4>
+                            </li>
+                            <li>
+                                <h6>{timer}</h6>
+                            </li>
+                        </ul>
                         {isOwner && (
                             <div>
                                 <button onClick={onDeleteClick}>Delete Nweet</button>

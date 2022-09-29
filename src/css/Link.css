@@ -16,3 +16,6 @@ input {
     border: none;
     background-color: #fff;
 }
+#time li {
+    list-style-type: none;
+}
