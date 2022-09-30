@@ -53,14 +53,8 @@ const WriteButton = ({ writeObj, isOwner })=> {
                     </>
                 ) : (
                     <div>
-                        <ul id='time'>
-                            <li>
-                                <h4>{writeObj.text}</h4>
-                            </li>
-                            <li>
-                               <h6>{timeString}</h6>
-                            </li>
-                        </ul>
+                        <h4>{writeObj.text}</h4>
+                        <h6>{timeString}</h6>
                         {isOwner && (
                             <div>
                                 <button onClick={onDeleteClick}>Delete Nweet</button>
