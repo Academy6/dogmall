@@ -9,17 +9,23 @@ const Header = ({isLoggedIn})=> {
     const navigate = useNavigate()
 
     const onClickLogOut = ()=> {
-        navigate('/')
-        authService.signOut()
+        authService.onAuthStateChanged((user)=> {
+            if(user) {
+                navigate("/")
+                authService.signOut()
+            }
+        })
     }
     const onClickFunc = ()=> {
         authService.onAuthStateChanged((user)=> {
-            if (!user) {
+            if (user) {
+            } else {
                 const ok = window.confirm(`로그인이 필요한 화면입니다. 로그인하시겠습니까?`)
                 if (ok === true) {
                     navigate('/login')
                 } else {
                     navigate('/')
+                    
                 }
             }
         })

@@ -5,7 +5,14 @@ import '../css/Link.css'
 const WriteButton = ({ writeObj, isOwner })=> {
     const [editing, setEditing] = useState(false)
     const [newWrite, setNewWrite] = useState(writeObj.text)
-    const [time, setTime] = useState('0')
+    const date = new Date()
+
+    const time = {
+        hour: date.getHours(),
+        min: date.getMinutes(),
+        sec: date.getSeconds()
+    }
+    const timeString = `${time.hour}:${time.min}:${time.sec}`
 
     const onDeleteClick = async()=> {
         const ok = window.confirm(`정말로 삭제하시겠습니까?`)
@@ -13,13 +20,6 @@ const WriteButton = ({ writeObj, isOwner })=> {
             await dbService.doc(`user/${writeObj.id}`).delete()
         }
     }
-    const Time = ()=> {
-        const date = new Date()
-        const hour = String(date.getHours()).padStart(2, "0")
-        const min = String(date.getMinutes()).padStart(2, "0")
-        setTime(`${hour}:${min}`)
-    }
-    setTimeout(Time)
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     }
@@ -58,7 +58,7 @@ const WriteButton = ({ writeObj, isOwner })=> {
                                 <h4>{writeObj.text}</h4>
                             </li>
                             <li>
-                                <h6>{time}</h6>
+                               <h6>{timeString}</h6>
                             </li>
                         </ul>
                         {isOwner && (

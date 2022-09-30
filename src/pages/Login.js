@@ -20,7 +20,7 @@ const Login = ()=> {
         }
         
     }
-    const OnClick = (event)=> {
+    const OnClickLog = (event)=> {
         // ID 이메일 체크 regex 정규식
         const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
         // Password 특수문자 포함 체크 regex 정규식
@@ -44,13 +44,11 @@ const Login = ()=> {
         signInWithEmailAndPassword(auth, loginID, loginPassword)
         .then((userCredential)=> {
             const user = userCredential.user
-            if (Boolean(user) === true) {
-                authService.onAuthStateChanged((user)=> {
-                    console.log(user.emailVerified)
-                })
-                console.log(user)
-                navigate('/')
-            }
+            auth.onAuthStateChanged((user)=> {
+                if (user) {
+                    navigate('/')
+                }
+            })
         })
         .catch((error)=> {
             setError(error.message)
@@ -65,7 +63,7 @@ const Login = ()=> {
             <form onSubmit={onSubmit}>
                 <input type='text' placeholder='아이디' name='Id' onChange={onChange} value={loginID} required  />   
                 <input type='password' placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required />
-                <button onClick={OnClick}>로그인</button>
+                <button onClick={OnClickLog}>로그인</button>
                 {error}
             </form>
 
