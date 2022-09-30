@@ -18,4 +18,5 @@ input {
 }
 #time li {
     list-style-type: none;
+    float: left;
 }

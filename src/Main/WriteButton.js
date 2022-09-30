@@ -17,12 +17,12 @@ const WriteButton = ({ writeObj, isOwner })=> {
         const date = new Date()
         const hours = String(date.getHours()).padStart(2, '0')
         const min = String(date.getMinutes()).padStart(2, '0')
-        return (`${hours}:${min}`)
+        setTimer(`${hours}:${min}`)
     }
     const currentTime = ()=> {
-        currentTime = currentTimer()
-        setTimer(timer)
+        setTimeout(currentTimer, 0)
     }
+    currentTime()
     const toggleEditing = () => {
         setEditing((prev) => !prev);
     }
