@@ -41,7 +41,7 @@ const  Comunity = ({userObj})=> {
             <div className='comunity'>
                 <StyledAllwaysScrollSection>
                     <div>
-                        {writes.map((write)=> (
+                        {writes.sort((a,b) => a.createdAt - b.createdAt).map((write)=> (
                             <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
                         ))}
                     </div>
