@@ -38,7 +38,7 @@ const Router = ()=> {
                 <Route path='/signup' element={<Signup />} />
 				<Route path="/product/:1" element={<Product />} />
 				<Route path="/product2/:2" element={<Product2 />} />
-				<Route path="/upload/:3" element={<Upload />} />
+				<Route path="/upload/:3" element={<Upload userObj={userObj} />} />
 				<Route path="/Cart/:5" element={<Cart />} />
                 <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
             </Routes>
