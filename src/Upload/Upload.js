@@ -1,12 +1,14 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Form, Divider, Input, InputNumber, Button, List } from 'antd';
 // import '../scss/upload.css';
 import 'antd/dist/antd.css';
 import { useState } from 'react';
 import { dbService } from '../fbase'
+import { useNavigate } from 'react-router-dom';
 
 
 const Upload = ({userObj}) => {
+
 //     const value = {
 //         seller: seller,
 //         name: name,
@@ -24,7 +26,8 @@ const Upload = ({userObj}) => {
           setValue(event.target.value);
         };
         return [value, handler];
-      }
+    }
+
     const [form] = Form.useForm();
     // const [imgupload, setImgUpload] = useInput('');
     // const [seller, setSeller] = useInput('');
@@ -37,7 +40,9 @@ const Upload = ({userObj}) => {
         price: '',
         description: ''
     })
+    const [goodsInfo, setGoodsInfo] = useState([])
     const {seller, name, price, description} = input
+    const navigate = useNavigate()
     
     const onChangeImage = ((event) => {
         
@@ -74,6 +79,15 @@ const Upload = ({userObj}) => {
     // }
     
     
+    useEffect(()=> {
+        dbService.collection('goodsInfo').onSnapshot(snapshot=> {
+            const goodsInfoArray = snapshot.docs.map(doc=> ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setGoodsInfo(goodsInfoArray)
+        })
+    }, [])
     const onSubmit = (e)=> {
         e.preventDefault()
     }
@@ -86,20 +100,29 @@ const Upload = ({userObj}) => {
     }
 
     const onClick = async () => {
-        await dbService.collection("info").add({
-            text: input,
-            createdAt: Date.now(),
-            creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
-        });
-        console.log(input)
-        setInput("")
+        // const questions = window.confirm(`이 상품을 올리시겠습니까?`)
+        // if (questions) {
+        //     await dbService.collection("goodsInfo").add({
+        //         text: input,
+        //         createdAt: Date.now(),
+        //         creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
+        //     });
+        //     setInput("")
+        //     // navigate('/product2/3')
+        // }
       };
+      const Test = ()=> {
+        console.log(input.text)
+        goodsInfo.map((number)=> {
+            console.log(number.text)
+        })
+      }
         // 파이어베이스 -> formData 넘겨줌 ->  파이어베이스 응답 ->  응답에 따라 처리(성공/실패) -> 성공 : 상세페이지로 이동 / 메인페이지로 이동 
         //                                                                                      -> 실패 : 무슨문젠지 알림            
 
  
     return (
-        <div id="upload-container" className='inner'>            
+        <div id="upload-container" className='inner'>      
             <Form name="productUpload" onFinish={onsubmitForm} onSubmit={onSubmit} form={form}>  
                 <Form.Item name="imgUpload"
                     label={<div className='upload-label'>상품사진</div>}>
@@ -146,6 +169,7 @@ const Upload = ({userObj}) => {
                     <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
                         상품등록하기
                     </Button>
+                    <button onClick={Test}>TEST</button>
                     
                 </Form.Item>
             </Form>
