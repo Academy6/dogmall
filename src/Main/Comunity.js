@@ -4,13 +4,10 @@ import { dbService } from '../fbase'
 import styled from 'styled-components';
 import WriteButton from './WriteButton';
 import "../css/comunity.css"
-import { getTimeMeasureUtils } from '@reduxjs/toolkit/dist/utils';
 
 const  Comunity = ({userObj})=> {
     const [write, setWrite] = useState("")
     const [writes, setWrites] = useState([])
-    const [writeTime, setWriteTime] = useState("")
-    const [getTime, setGetTime] = useState([])
     const date = new Date()
 
     useEffect(()=> {
@@ -22,13 +19,6 @@ const  Comunity = ({userObj})=> {
             setWrites(writeArray)
         })
     }, [])
-
-    const time = ()=> {
-        const min = String(date.getMinutes()).padStart(2, "0")
-        const sec = String(date.getSeconds()).padStart(2, "0")
-        setWriteTime(`${min}:${sec}`)
-        setGetTime([...writeTime])
-    }
     const onSubmit = (e)=> {
         e.preventDefault();
     }
@@ -43,7 +33,6 @@ const  Comunity = ({userObj})=> {
             createdAt: Date.now(),
             creatorId: userObj.email
         })
-        setTimeout(time)
         setWrite("")
     }
 
@@ -53,7 +42,7 @@ const  Comunity = ({userObj})=> {
                 <StyledAllwaysScrollSection>
                     <div>
                         {writes.sort((a,b) => a.createdAt - b.createdAt).map((write)=> (
-                            <WriteButton getTime={getTime} key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
+                            <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
                         ))}
                     </div>
                 </StyledAllwaysScrollSection>
