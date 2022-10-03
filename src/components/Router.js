@@ -42,7 +42,6 @@ const Router = ()=> {
 				<Route path="/upload/:3" element={<Upload userObj={userObj} />} />
 				<Route path="/Cart/:5" element={<Cart />} />
                 <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
-                <Route path="#" element={<WriteButton userObj={userObj} />} />
             </Routes>
             <Footer />
         </BrowserRouter>
