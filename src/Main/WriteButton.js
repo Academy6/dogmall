@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { dbService } from '../fbase';
 import '../css/Link.css'
 
-const WriteButton = ({ writeObj, isOwner, writes })=> {
+const WriteButton = ({ writeObj, isOwner })=> {
     const [editing, setEditing] = useState(false)
     const [newWrite, setNewWrite] = useState(writeObj.text)
     const date = new Date()
