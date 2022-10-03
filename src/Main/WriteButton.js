@@ -57,8 +57,8 @@ const WriteButton = ({ writeObj, isOwner, writes })=> {
                         <h6>{writeObj.time}</h6>
                         {isOwner && (
                             <div>
-                                <button onClick={onDeleteClick}>Delete Nweet</button>
-                                <button onClick={toggleEditing}>Edit Nweet</button>
+                                <button onClick={onDeleteClick}>삭제</button>
+                                <button onClick={toggleEditing}>수정</button>
                             </div>
                         )}
                     </div>
