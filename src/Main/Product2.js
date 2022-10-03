@@ -2,20 +2,10 @@ import React from 'react';
 import { dbService } from '../fbase';
 
 
-const Product2 = ({userObj}) => {
-    const Test = ()=> {
-        const data = userObj
-        const test = dbService.collection('goodsInfo').onSnapshot(snapshot=> {
-            const goodsInfoArray = snapshot.docs.map((doc)=> ({
-                id: doc.id,
-                ...doc.data()
-            }))
-            console.log(goodsInfoArray)
-        })
-    }
+const Product2 = () => {
     return (
         <div>
-            <button onClick={Test}>test</button>
+            상품보기 페이지
         </div>
     );
 }
