@@ -8,12 +8,6 @@ const WriteButton = ({ writeObj, isOwner })=> {
     const date = new Date()
     // console.log(writes)
 
-    const time = {
-        min: String(date.getMinutes()).padStart(2, "0"),
-        sec: String(date.getSeconds()).padStart(2, "0")
-    }
-    const timeString = `${time.min}:${time.sec}`
-
     const onDeleteClick = async()=> {
         const ok = window.confirm(`정말로 삭제하시겠습니까?`)
         if (ok) {
