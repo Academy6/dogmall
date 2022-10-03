@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { dbService } from '../fbase';
 import '../css/Link.css'
 
-const WriteButton = ({ writeObj, isOwner })=> {
+const WriteButton = ({ writeObj, isOwner, getTime })=> {
     const [editing, setEditing] = useState(false)
     const [newWrite, setNewWrite] = useState(writeObj.text)
     const date = new Date()
@@ -54,7 +54,7 @@ const WriteButton = ({ writeObj, isOwner })=> {
                 ) : (
                     <div>
                         <h4>{writeObj.text}</h4>
-                        <h6>{timeString}</h6>
+                        <h6>{getTime}</h6>
                         {isOwner && (
                             <div>
                                 <button onClick={onDeleteClick}>Delete Nweet</button>
