@@ -11,6 +11,7 @@ import Comunity from '../Main/Comunity';
 import Header from '../Header/Header';
 import { Footer } from 'antd/lib/layout/layout';
 import { authService } from '../fbase';
+import WriteButton from '../Main/WriteButton';
 
 const Router = ()=> {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -41,6 +42,7 @@ const Router = ()=> {
 				<Route path="/upload/:3" element={<Upload userObj={userObj} />} />
 				<Route path="/Cart/:5" element={<Cart />} />
                 <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
+                <Route path="#" element={<WriteButton userObj={userObj} />} />
             </Routes>
             <Footer />
         </BrowserRouter>
