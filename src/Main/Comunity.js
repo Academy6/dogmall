@@ -26,11 +26,16 @@ const  Comunity = ({userObj})=> {
         const {target : {value}} = event
         setWrite(value)
     }
+    const time = {
+        hour: String(date.getHours()).padStart(2, "0"),
+        min: String(date.getMinutes()).padStart(2, "0")
+    }
     const onClick = async()=> {
         const db = dbService
         await db.collection("user").add({ 
             text: write,
             createdAt: Date.now(),
+            time: `${time.hour}:${time.min}`,
             creatorId: userObj.email
         })
         setWrite("")
@@ -42,7 +47,7 @@ const  Comunity = ({userObj})=> {
                 <StyledAllwaysScrollSection>
                     <div>
                         {writes.sort((a,b) => a.createdAt - b.createdAt).map((write)=> (
-                            <WriteButton key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
+                            <WriteButton writes={writes} key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
                         ))}
                     </div>
                 </StyledAllwaysScrollSection>
