@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table} from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
 function Cart(props){
     // const state = useSelector((state)=>state);
