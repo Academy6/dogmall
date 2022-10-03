@@ -1,7 +1,7 @@
 import { Form, Divider, Input, Button } from 'antd';
 // import '../scss/upload.css';
 import 'antd/dist/antd.min.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { dbService } from '../fbase'
 import { storageService } from '../fbase'
 
@@ -11,19 +11,28 @@ const Upload = ({userObj}) => {
 
     const [form] = Form.useForm();
     // 서버로 전달하기위해 하나의 input값으로 지정 textData
-    const [input, setInput] = useState({
+    const [goods, setGoods] = useState({
         seller: '',
         name: '',
         price: '',
         description: '',
         fileName : ''
     }) 
-    const {seller, name, price, description} = input
+    const {seller, name, price, description, fileName} = goods
 
-    var [file, setFile] = useState(null); //storge에 넣기위한 변수.
+    let [file, setFile] = useState(null); //storge에 넣기위한 변수.
+    const [goodsInfo, setGoodsInfo] = useState([])
     
-    
-    
+    useEffect(()=> {
+        dbService.collection('goodsInfo').onSnapshot(snapshot=> {
+            const goodsArray = snapshot.docs.map((doc)=> ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setGoodsInfo(goodsArray)
+        })
+    }, [])
+    console.log(goodsInfo)
     const onChangeImage = ((event) => {
         file = event.target.files[0];
         setFile(file);
@@ -31,8 +40,8 @@ const Upload = ({userObj}) => {
     
     const onChange = (e)=> {
         const {target: {name, value}} = e
-        setInput({
-            ...input,
+        setGoods({
+            ...goods,
             [name]: value
         })
     } //input갑에 저장하기 위한 함수
@@ -42,23 +51,20 @@ const Upload = ({userObj}) => {
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
         
         if (questions) {
-            input.fileName = file.name; 
+            goods.fileName = file.name; 
             
             await dbService.collection("goodsInfo").add({
-                text: input,
+                text: goods,
                 createdAt: Date.now(),
                 creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
             });
-       
             storageService.ref()
                             .child('dogimg/' + file.name )
                             .put(file);
-            setInput("")
+            setGoods("")
             setFile(null)
-            
         }
       };
- 
     return (
         <div id="upload-container" className='inner'>      
             <Form name="productUpload"  form={form}>  
@@ -67,7 +73,7 @@ const Upload = ({userObj}) => {
                     <div id="upload-img-placeholder">
                         <img src="images/icons/camera.png" alt="" />
                         <span>이미지를 업로드 해주세요.</span>
-                        <input type={"file"}  onChange={onChangeImage}  />
+                        <input type={"file"} name="fileName"  onChange={onChangeImage}  />
                     </div>
                 </Form.Item>
                 <Divider/>
