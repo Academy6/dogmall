@@ -4,7 +4,7 @@ import 'antd/dist/antd.min.css';
 import { useState, useEffect } from 'react';
 import { dbService } from '../fbase'
 import { storageService } from '../fbase'
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -22,17 +22,6 @@ const Upload = ({userObj}) => {
     const {seller, name, price, description, fileName} = goods
 
     let [file, setFile] = useState(null); //storge에 넣기위한 변수.
-    const [goodsInfo, setGoodsInfo] = useState([])
-    
-    useEffect(()=> {
-        dbService.collection('goodsInfo').onSnapshot(snapshot=> {
-            const goodsArray = snapshot.docs.map((doc)=> ({
-                id: doc.id,
-                ...doc.data()
-            }))
-            setGoodsInfo(goodsArray)
-        })
-    }, [])
     const onChangeImage = ((event) => {
         file = event.target.files[0];
         setFile(file);
@@ -61,13 +50,14 @@ const Upload = ({userObj}) => {
             storageService.ref()
                             .child('dogimg/' + file.name )
                             .put(file);
+            navigate("/product2/:2")
             setGoods("")
             setFile(null)
         }
       };
     return (
         <div id="upload-container" className='inner'>      
-            <Form name="productUpload"  form={form}>  
+            <Form name="productUpload" >  
                 <Form.Item name="imgUpload"
                     label={<div className='upload-label'>상품사진</div>}>
                     <div id="upload-img-placeholder">
