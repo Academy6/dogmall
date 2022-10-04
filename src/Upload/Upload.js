@@ -4,11 +4,12 @@ import 'antd/dist/antd.min.css';
 import { useState, useEffect } from 'react';
 import { dbService } from '../fbase'
 import { storageService } from '../fbase'
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 
 const Upload = ({userObj}) => {
-
+    const navigate = useNavigate()
     const [form] = Form.useForm();
     // 서버로 전달하기위해 하나의 input값으로 지정 textData
     const [goods, setGoods] = useState({
@@ -32,7 +33,6 @@ const Upload = ({userObj}) => {
             setGoodsInfo(goodsArray)
         })
     }, [])
-    console.log(goodsInfo)
     const onChangeImage = ((event) => {
         file = event.target.files[0];
         setFile(file);

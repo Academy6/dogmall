@@ -17,6 +17,7 @@ const  Comunity = ({userObj})=> {
                 ...doc.data()
             }))
             setWrites(writeArray)
+            
         })
     }, [])
     const onSubmit = (e)=> {
