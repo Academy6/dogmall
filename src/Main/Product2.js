@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import { useLocation } from 'react-router-dom'
-import queryString from 'query-string';
+import { storageService } from '../fbase'
+import styled from 'styled-components';
 
 
 const Product2 = () => {
     const [goodsArray, setGoodsArray] = useState([])
-    const location = useLocation()
     useEffect(()=> {
         dbService.collection('goodsInfo').onSnapshot(snapshot=> {
             const goodsInfoArray = snapshot.docs.map((doc)=> ({
@@ -15,36 +14,49 @@ const Product2 = () => {
             }))
             setGoodsArray(goodsInfoArray)
         })
+    
     }, [])
-    const Test = ()=> {
-        console.log(goodsArray)
-        // console.log(window.location.href)
-        let qs = queryString.parse(window.location.href)
-        console.log(qs)
-    }
-    // const Test = ()=> {
-    //     const [goodsInfo, setGoodsInfo] = useState("")
-    //     dbService.collection('goodsInfo').onSnapshot(snapshot=> {
-    //         const goodsInfoArray = snapshot.docs.map((doc)=> ({
-    //             id: doc.id,
-    //             ...doc.data()
-    //         }))
-    //         goodsInfoArray.map((num)=> {
-                
-    //         })
-    //     })
-    // }
     return (
         <div>
-            <button onClick={Test}>test</button>
             <div>
+                <StyledAllwaysScrollSection>
+                    <div>
+                        <p>상품보기 페이지</p>
+                        {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
+                            <div key={index}>
+                                <ul>
+                                    <li>{data.text.seller}님</li>
+                                    <li>{data.text.price}원</li>
+                                    <li>{data.text.description}</li>
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </StyledAllwaysScrollSection>
+            </div>
+            {/* <div>
                 <p>상품보기 페이지</p>
                 {goodsArray.map((data,index)=> (
-                    <div key={index}>{data.text.price}</div>
+                    <div key={index}>{data.text.seller}님</div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );    
 }
 
 export default Product2;
+
+const StyledAllwaysScrollSection = styled.div`
+    overflow: scroll;
+    height: 500px;
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        border-radius: 6px;
+        background-color: rgb(255, 255, 255, 0.4);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgb(0, 0, 0, 0.3);
+        border-radius: 6px;
+    }
+`
