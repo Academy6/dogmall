@@ -1,4 +1,4 @@
-import { Form, Divider, Input, Button } from 'antd';
+import { Form, Divider, Input, Button, Result } from 'antd';
 // import '../scss/upload.css';
 import 'antd/dist/antd.min.css';
 import { useState, useEffect } from 'react';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Upload = ({userObj}) => {
     const navigate = useNavigate()
-    const [form] = Form.useForm();
+    const [file, setFile] = useState()
     // 서버로 전달하기위해 하나의 input값으로 지정 textData
     const [goods, setGoods] = useState({
         seller: '',
@@ -19,13 +19,7 @@ const Upload = ({userObj}) => {
         description: '',
         fileName : ''
     }) 
-    const {seller, name, price, description, fileName} = goods
-
-    let [file, setFile] = useState(null); //storge에 넣기위한 변수.
-    const onChangeImage = ((event) => {
-        file = event.target.files[0];
-        setFile(file);
-    }) //  
+    const {seller, name, price, description, fileName} = goods  
     
     const onChange = (e)=> {
         const {target: {name, value}} = e
@@ -35,26 +29,34 @@ const Upload = ({userObj}) => {
         })
     } //input갑에 저장하기 위한 함수
 
-    const onClick = async () => {
 
+    const onClick = async () => {
+        const fileRef = storageService.ref().child()
+        const response = await fileRef.putString(file, "data_url")
+        const fileUrl = await response.ref.getDownloadURL()
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
         
-        if (questions) {
-            goods.fileName = file.name; 
-            
+        if (questions) { 
             await dbService.collection("goodsInfo").add({
                 text: goods,
                 createdAt: Date.now(),
-                creatorId: userObj.email // userObj: props로 넘겨준 login한 user 정보
-            });
-            storageService.ref()
-                            .child('dogimg/' + file.name )
-                            .put(file);
+                creatorId: userObj.email,
+                fileUrl
+            });;
             navigate("/product2/:2")
             setGoods("")
-            setFile(null)
         }
-      };
+    };
+    const onChangeImage = ((event)=> {
+        const {target: {files}} = event
+        const theFile = files[0]
+        const reader = new FileReader()
+        reader.onloadend = (finishedEvent)=> {
+            const {currentTarget: {result}} = finishedEvent
+            setFile(result)
+        }
+        reader.readAsDataURL(theFile)
+    })
     return (
         <div id="upload-container" className='inner'>      
             <Form name="productUpload" >  
@@ -62,8 +64,8 @@ const Upload = ({userObj}) => {
                     label={<div className='upload-label'>상품사진</div>}>
                     <div id="upload-img-placeholder">
                         <img src="images/icons/camera.png" alt="" />
-                        <span>이미지를 업로드 해주세요.</span>
-                        <input type={"file"} name="fileName"  onChange={onChangeImage}  />
+                        {file ?  <img src={file} width={50} height={50} /> : <span>이미지를 업로드 해주세요.</span>}
+                        <Input type="file" name="fileName"  onChange={onChangeImage}  />
                     </div>
                 </Form.Item>
                 <Divider/>

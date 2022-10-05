@@ -14,7 +14,6 @@ const Product2 = () => {
             }))
             setGoodsArray(goodsInfoArray)
         })
-    
     }, [])
     return (
         <div>
@@ -25,6 +24,7 @@ const Product2 = () => {
                         {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
                             <div key={index}>
                                 <ul>
+                                    <li><img src={data.fileUrl} width={50} height={50} /></li>
                                     <li>{data.text.seller}님</li>
                                     <li>{data.text.price}원</li>
                                     <li>{data.text.description}</li>
