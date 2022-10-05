@@ -17,10 +17,9 @@ const Upload = ({userObj}) => {
         seller: '',
         name: '',
         price: '',
-        fileName : '',
         description: ''
     }) 
-    const {seller, name, price, description, fileName} = goods  
+    const {seller, name, price, description} = goods  
     
     const onChange = (e)=> {
         const {target: {name, value}} = e
@@ -32,7 +31,7 @@ const Upload = ({userObj}) => {
 
 
     const onClick = async () => {
-        const fileRef = storageService.ref().child(`${userObj.email}/${uuidv4()}`)
+        const fileRef = storageService.ref().child(`dogimg/${uuidv4()}`)
         const response = await fileRef.putString(file, "data_url")
         const fileUrl = await response.ref.getDownloadURL()
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
@@ -67,7 +66,7 @@ const Upload = ({userObj}) => {
                     <div id="upload-img-placeholder">
                         <img src="images/icons/camera.png" alt="" />
                         {file ?  <img src={file} width={50} height={50} /> : <span>이미지를 업로드 해주세요.</span>}
-                        <Input type="file" value={fileName} name="fileName"  onChange={onChangeImage}  />
+                        <input type="file"  name="fileName"  onChange={onChangeImage}  />
                     </div>
                 </Form.Item>
                 <Divider/>
