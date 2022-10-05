@@ -26,6 +26,7 @@ const Product2 = () => {
                                 <ul>
                                     <li><img src={data.fileUrl} width={50} height={50} /></li>
                                     <li>{data.text.seller}님</li>
+                                    <li>{data.text.name}</li>
                                     <li>{data.text.price}원</li>
                                     <li>{data.text.description}</li>
                                 </ul>
