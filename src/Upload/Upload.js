@@ -1,6 +1,7 @@
 import { Form, Divider, Input, Button, Result } from 'antd';
 // import '../scss/upload.css';
 import 'antd/dist/antd.min.css';
+import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
 import { dbService } from '../fbase'
 import { storageService } from '../fbase'
@@ -16,8 +17,8 @@ const Upload = ({userObj}) => {
         seller: '',
         name: '',
         price: '',
-        description: '',
-        fileName : ''
+        fileName : '',
+        description: ''
     }) 
     const {seller, name, price, description, fileName} = goods  
     
@@ -31,7 +32,7 @@ const Upload = ({userObj}) => {
 
 
     const onClick = async () => {
-        const fileRef = storageService.ref().child()
+        const fileRef = storageService.ref().child(`${userObj.email}/${uuidv4()}`)
         const response = await fileRef.putString(file, "data_url")
         const fileUrl = await response.ref.getDownloadURL()
         const questions = window.confirm(`이 상품을 올리시겠습니까?`)
@@ -45,6 +46,7 @@ const Upload = ({userObj}) => {
             });;
             navigate("/product2/:2")
             setGoods("")
+            setFile(null)
         }
     };
     const onChangeImage = ((event)=> {
@@ -60,12 +62,12 @@ const Upload = ({userObj}) => {
     return (
         <div id="upload-container" className='inner'>      
             <Form name="productUpload" >  
-                <Form.Item name="imgUpload"
+                <Form.Item name="fileName"
                     label={<div className='upload-label'>상품사진</div>}>
                     <div id="upload-img-placeholder">
                         <img src="images/icons/camera.png" alt="" />
                         {file ?  <img src={file} width={50} height={50} /> : <span>이미지를 업로드 해주세요.</span>}
-                        <Input type="file" name="fileName"  onChange={onChangeImage}  />
+                        <Input type="file" value={fileName} name="fileName"  onChange={onChangeImage}  />
                     </div>
                 </Form.Item>
                 <Divider/>
@@ -78,8 +80,8 @@ const Upload = ({userObj}) => {
                 <Form.Item name="name"
                 label={<div className='upload-label'>상품이름</div>}>
                     <Input
-                         value={name}
-                         onChange={onChange}
+                        value={name}
+                        onChange={onChange}
                         className='upload-name'
                         size='large'
                         placeholder='상품 이름을 입력해주세요'
