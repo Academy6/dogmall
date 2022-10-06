@@ -40,7 +40,7 @@ const Router = ()=> {
 				<Route path="/product/:1" element={<Product />} />
 				<Route path="/product2/:2" element={<Product2 userObj={userObj} />} />
 				<Route path="/upload/:3" element={<Upload userObj={userObj} />} />
-				<Route path="/Cart/:5" element={<Cart />} />
+				<Route path="/Cart/:5" element={<Cart userObj={userObj} />} />
                 <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
             </Routes>
             <Footer />
