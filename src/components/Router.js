@@ -27,7 +27,6 @@ const Router = ()=> {
                 setIsLoggedIn(false)
             }
             setInit(true)
-            console.log(userObj.uid)
         })
     }, [])
     return (
