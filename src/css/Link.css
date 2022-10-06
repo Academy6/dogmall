@@ -18,5 +18,10 @@ input {
 }
 #time li {
     list-style-type: none;
-    float: left;
+}
+.isUser {
+    text-align: right;
+}
+.notUser {
+    text-align: left;
 }
