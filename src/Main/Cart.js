@@ -1,7 +1,7 @@
 import { dbService } from '../fbase';
 import React, { useEffect, useState } from 'react';
 
-const Cart = ()=> {
+const Cart = ({userObj})=> {
   const [cart, setCart] = useState([])
   useEffect(()=> {
     dbService.collection("Cart").onSnapshot(snapshot=> {
@@ -9,10 +9,12 @@ const Cart = ()=> {
         id: doc.id,
         ...doc.data()
       }))
-      console.log(cartArray)
-      setCart(cartArray)
+      const resultArray = cartArray.filter((data)=> {
+        return data.user === userObj.email
+      })
+      setCart(resultArray)
     })
-  })
+  }, [])
   return(
     <div>
       <div>
