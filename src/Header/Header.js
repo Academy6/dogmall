@@ -52,7 +52,6 @@ const Header = ({isLoggedIn})=> {
                         <>
                             <h1><NavLink to ='/' className='text-link'>PetShop</NavLink></h1>
                             <ul>
-                                <li><NavLink to ='/upload/2' onClick={onClickFunc} className='text-link'>상품등록하기</NavLink></li>
                                 <li><NavLink to ='/product2/3' className='text-link'>상품보기</NavLink></li>
                                 <li><NavLink to ='/comunity/4' onClick={onClickFunc} className='text-link'>커뮤니티</NavLink></li>
                                 <li><NavLink to ='/cart/5' onClick={onClickFunc} className='text-link'>장바구니</NavLink></li>
