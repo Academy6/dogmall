@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Upload = ({userObj}) => {
     const navigate = useNavigate()
-    const [file, setFile] = useState()
+    const [file, setFile] = useState(null)
     // 서버로 전달하기위해 하나의 input값으로 지정 textData
     const [goods, setGoods] = useState({
         seller: '',

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
-import { storageService } from '../fbase'
 import styled from 'styled-components';
 
 
-const Product2 = () => {
+const Product2 = ({userObj}) => {
     const [goodsArray, setGoodsArray] = useState([])
     useEffect(()=> {
         dbService.collection('goodsInfo').onSnapshot(snapshot=> {
@@ -14,7 +13,19 @@ const Product2 = () => {
             }))
             setGoodsArray(goodsInfoArray)
         })
-    }, [])
+        console.log(goodsArray)
+    }, [])//useEffect 의존성배열, 디팬던시
+    const onClick = async()=> {
+        console.log(goodsArray)
+        // 내가 넣을 값인지 찍어봐요. 그 값의 타입이 내가 넣으려는 탑인지 확인해ㅑ요
+        await goodsArray.map((data, index)=> {
+            const img = data.fileUrl
+            dbService.collection("Cart").add({
+                text: data.text.price,
+                img
+            })
+        })
+    }
     return (
         <div>
             <div>
@@ -29,6 +40,7 @@ const Product2 = () => {
                                     <li>{data.text.name}</li>
                                     <li>{data.text.price}원</li>
                                     <li>{data.text.description}</li>
+                                    <li><button onClick={onClick}>장바구니</button></li>
                                 </ul>
                             </div>
                         ))}
