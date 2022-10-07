@@ -9,7 +9,9 @@ const  Comunity = ({userObj})=> {
     const [write, setWrite] = useState("")
     const [writes, setWrites] = useState([])
     const date = new Date()
-
+    const AmOrPm = parseInt(date.getHours()) <= 12 ? '오전' : '오후'
+    const min = String(date.getMinutes()).padStart(2, "0")
+    const hours = (parseInt(date.getHours())%12)||12;
     useEffect(()=> {
         dbService.collection('user').onSnapshot(snapshot => {
             const writeArray = snapshot.docs.map(doc => ({
@@ -19,7 +21,7 @@ const  Comunity = ({userObj})=> {
             setWrites(writeArray)
             
         })
-    }, [])
+    }, [write])
     const onSubmit = (e)=> {
         e.preventDefault();
     }
@@ -27,16 +29,13 @@ const  Comunity = ({userObj})=> {
         const {target : {value}} = event
         setWrite(value)
     }
-    const time = {
-        hour: String(date.getHours()).padStart(2, "0"),
-        min: String(date.getMinutes()).padStart(2, "0")
-    }
     const onClick = async()=> {
         const db = dbService
         await db.collection("user").add({ 
             text: write,
+            newTime: AmOrPm,
             createdAt: Date.now(),
-            time: `${time.hour}:${time.min}`,
+            time: `${hours}:${min}`,
             creatorId: userObj.email
         })
         setWrite("")
@@ -54,8 +53,8 @@ const  Comunity = ({userObj})=> {
                 </StyledAllwaysScrollSection>
             </div>
             <form onSubmit={onSubmit}>
-                <input value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
-                <button onClick={onClick}>작성</button>
+                <textarea className='Chat' rows={1} value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
+                <button className='Chat' onClick={onClick}>작성</button>
             </form>
         </div>
     );
@@ -63,6 +62,7 @@ const  Comunity = ({userObj})=> {
 const StyledAllwaysScrollSection = styled.div`
     overflow: scroll;
     height: 500px;
+    width: 400px;
     &::-webkit-scrollbar {
         width: 8px;
         height: 8px;
