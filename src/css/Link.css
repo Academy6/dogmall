@@ -25,3 +25,15 @@ input {
 .notUser {
     text-align: left;
 }
+.chatUser {
+    display: inline;
+}
+.Chat2 h3, span {
+    display: inline;
+    vertical-align: middle;
+}
+.Chat2 span {
+    margin-right: 5px;
+    font-size: 10px;
+    color: #808080;
+}
