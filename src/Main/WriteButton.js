@@ -55,8 +55,17 @@ const WriteButton = ({ writeObj, isOwner, userObj })=> {
                     </div>
                 ) : (
                     <div className={isUser ? 'isUser' : 'notUser'}>
-                        <h4>{writeObj.text}</h4>
-                        <h6>{writeObj.time}</h6> 
+                       {isUser ? (
+                            <div className='Chat2'>
+                                <span>{writeObj.newTime} {writeObj.time}</span>
+                                <h3 className='chatUser'>{writeObj.text}</h3>
+                            </div> 
+                       ) : (
+                            <div className='Chat2'>
+                                <h3 className='chatUser'>{writeObj.text}</h3>
+                                <span>{writeObj.newTime} {writeObj.time}</span>
+                            </div>
+                       )}
                         {isOwner && (
                             <div>
                                 <button onClick={toggleEditing}>수정</button>
