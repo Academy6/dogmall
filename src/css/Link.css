@@ -37,3 +37,9 @@ input {
     font-size: 10px;
     color: #808080;
 }
+.blank {
+    border-color: red;
+}
+.no_blank {
+    border-color: black;
+}
