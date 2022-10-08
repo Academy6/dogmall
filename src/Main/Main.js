@@ -1,40 +1,67 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import '../css/Link.css'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Card }  from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { dbService } from '../fbase';
+import { getStorage, ref, getDownloadURL  } from "firebase/storage";
+import styled from 'styled-components';
 import bg from "./bg.jpg";
+import '../scss/custom.scss'
 
-const Main = (props) => {
-    return (
 
-        <>
-            {/* Main-bg */}
-            <img id='main-bg' className="main-bg" src ={bg}></img>
-            
-                <div className="container" >
-            
-            <Link to="/product/1">
-            <Row xs={1} md={2} className="g-4">  
-            {Array.from({ length: 4 }).map((_, idx) => (
-                <Col> 
-                <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
-                    <Card.Body>
-                    <Card.Title>상품 제목입니다.</Card.Title>
-                    <Card.Text>
-                    상품내용입니다.
-                    </Card.Text>
-                    </Card.Body>
-                </Card>
-                </Col>
-            
-            ))}
-            </Row>
-            </Link>
-            </div>
-        </> 
-    )
-}
+const Main = (props) => { 
+  const storage = getStorage();
+  
+  const [goodsArray, setGoodsArray] = useState([])  
+   useEffect(()=> {
+      dbService.collection('goodsInfo').onSnapshot(snapshot=> { //firebase에서 goodsinfo에대한 정보를 실시간으로 업데이트
+          const goodsInfoArray = snapshot.docs.map((doc)=> ({   //기존에 가지고 있는 정보에 새로운 정보가 들어왔을떄 기존 정보는 지워지지 않고 업데이트됨
+              id: doc.id,
+              ...doc.data()
+          }))
+          setGoodsArray(goodsInfoArray) //새로 만들어진 파일을 생성
+      })
+  }, [])
+  
+	return (
+      <>
+        {/* Main-bg */}
+      <img id='main-bg' className="main-bg" src ={bg}></img>
+      <div>
+      <div>
+                <StyledAllwaysScrollSection>
+                    <div>
+                        <p>상품보기 페이지</p>
+                        {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
+                            <div key={index}>  
+                                <ul>
+                                    <li><img src={data.fileUrl} width={50} height={50} /></li>
+                                    <li>{data.text.name}</li>
+                                    <li>{data.text.price}원</li>
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </StyledAllwaysScrollSection>
+            </div> 
+        
+
+           
+     </div>
+
+      </>  
+	);
+};
+
 export default Main;
+
+const StyledAllwaysScrollSection = styled.div`
+    overflow: scroll;
+    height: 500px;
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        border-radius: 6px;
+        background-color: rgb(255, 255, 255, 0.4);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgb(0, 0, 0, 0.3);
+        border-radius: 6px;
+    }`
