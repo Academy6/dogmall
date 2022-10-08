@@ -50,7 +50,6 @@ const Signup = ()=> {
         }
     }
     const onClick = async(event)=> {
-        console.log(name)
         const auth = getAuth()
         const regexId = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
         const regexPassword = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/
@@ -142,23 +141,27 @@ const Signup = ()=> {
         }
     }
     const duplicateCheck = ()=> {
-        dbService.collection("userInfo").onSnapshot(snapshot=> {
-            const userInfoArray = snapshot.docs.map((doc)=> ({
-                id: doc.id,
-                ...doc.data()
-            }))
-            console.log(userInfoArray)
-            setUserInfo(userInfoArray)
-        })
-        userInfo.map((data)=> {
-            if (newId === data.id) {
-                alert('이미 존재하는 아이디입니다')
-                setNewId(false)
-                setNewId("")
-            } else if (newId !== data.id) {
-                setSameId(true)
-            }
-        })
+        if (newId === "") {
+            alert('아이디를 입력해주세요')
+        } else {
+            dbService.collection("userInfo").onSnapshot(snapshot=> {
+                const userInfoArray = snapshot.docs.map((doc)=> ({
+                    id: doc.id,
+                    ...doc.data()
+                }))
+                setUserInfo(userInfoArray)
+            })
+            userInfo.map((data)=> {
+                if (newId === data.id) {
+                    alert('이미 존재하는 아이디입니다')
+                    setNewId(false)
+                    setNewId("")
+                } else if (newId !== data.id) {
+                    alert('사용 가능한 아이디입니다')
+                    setSameId(true)
+                }
+            })
+        }
     }
     return (
         <div>
