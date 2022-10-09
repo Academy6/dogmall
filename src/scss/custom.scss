@@ -21,7 +21,6 @@ li {
 /* // footer */
 
 #main-footer {
- position:fixed;
  left:0px;
  bottom:0px;
  height:40px;
@@ -31,9 +30,31 @@ li {
 }
 
 /* main-bg */
- #main-bg{
+#main-bg{
    width: 100%;
-   height : 500px;
+   height : 300px;
    background-size : cover;
    background-position : center;
- }
+}
+.BestGoods div {
+  font-size: 20px;
+}
+.BestGoods0 ul{
+  display: flex;
+  justify-content: left;
+  border: 1px solid #000;
+} 
+.BestGoods1 ul{
+  text-align: right;
+  display: flex;
+  justify-content: right;
+  border: 1px solid #808080;
+}
+.BestGoods2 ul{
+  display: flex;
+  justify-content: left;
+  border: 1px solid #ff0000;
+}
+.BestGoods li {
+  display: block;
+}

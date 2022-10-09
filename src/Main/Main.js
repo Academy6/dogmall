@@ -21,32 +21,47 @@ const Main = (props) => {
   }, [])
   
 	return (
-      <>
+      <div>
         {/* Main-bg */}
-      <img id='main-bg' className="main-bg" src ={bg}></img>
-      <div>
-      <div>
-                <StyledAllwaysScrollSection>
+        <img id='main-bg' className="main-bg" src ={bg}></img>
+        <div>
+            <div>
+                <div>
+                    <h2>애완동물들의 쇼핑몰</h2>
+                    <div><img src={bg} width={300} height={300} /></div>
+                    <div><img src={bg} width={300} height={300} /></div>
+                    <div><img src={bg} width={300} height={300} /></div>
+                    <div><img src={bg} width={300} height={300} /></div>
+                    <div><img src={bg} width={300} height={300} /></div>
+                </div>
+                <div>
                     <div>
-                        <p>상품보기 페이지</p>
-                        {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
-                            <div key={index}>  
-                                <ul>
-                                    <li><img src={data.fileUrl} width={50} height={50} /></li>
-                                    <li>{data.text.name}</li>
-                                    <li>{data.text.price}원</li>
-                                </ul>
-                            </div>
-                        ))}
+                        <span style={{textAlign:'center'}}>베스트 상품</span>
                     </div>
-                </StyledAllwaysScrollSection>
-            </div> 
-        
+                    {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
+                        <div className='BestGoods' key={index}>  
+                            <div className={'BestGoods'+index}>
+                                {index % 2 === 0 ? (
+                                    <ul>
+                                        <li><img src={data.fileUrl} width={300} height={300} /></li>
+                                        <li>{data.text.name}</li>
+                                        <li>{data.text.price}원</li>
+                                    </ul>
+                                ) : (
+                                    <ul>
+                                        <li>{data.text.name}</li>
+                                        <li>{data.text.price}원</li>
+                                        <li><img src={data.fileUrl} width={300} height={300} /></li>
+                                    </ul>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>    
+        </div>
 
-           
-     </div>
-
-      </>  
+      </div>  
 	);
 };
 
