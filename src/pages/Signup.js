@@ -153,11 +153,9 @@ const Signup = ()=> {
             })
             userInfo.map((data)=> {
                 if (newId === data.id) {
-                    alert('이미 존재하는 아이디입니다')
                     setNewId(false)
                     setNewId("")
                 } else if (newId !== data.id) {
-                    alert('사용 가능한 아이디입니다')
                     setSameId(true)
                 }
             })
@@ -169,7 +167,7 @@ const Signup = ()=> {
                 <ul>
                     <li>
                         <input className={blankId ? 'blank' : 'no_blank'} type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
-                        <button onClick={duplicateCheck}>중복 체크</button>
+                        <button onClick={duplicateCheck}>{sameId ? '사용 가능한 아이디' : '중복 체크'}</button>
                     </li>
                     <li>
                         <input className={blankName ? 'blank' : 'no_blank'} name='name' type='text' placeholder='이름' value={name} onChange={onChange}/>
