@@ -11,8 +11,8 @@ const Header = ({isLoggedIn})=> {
     const onClickLogOut = ()=> {
         authService.onAuthStateChanged((user)=> {
             if(user) {
-                navigate("/")
                 authService.signOut()
+                navigate("/")
             }
         })
     }
