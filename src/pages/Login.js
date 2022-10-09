@@ -47,6 +47,9 @@ const Login = ()=> {
             auth.onAuthStateChanged((user)=> {
                 if (user) {
                     navigate('/')
+                    console.log('로그인 됨!!')
+                } else if (user === null) {
+                    alert('죄송해요 다시 로그인 해주세요.\n일시적 오류입니다.\n계속 안되실경우 로그인 창에서 새로고침 해주세요')
                 }
             })
         })
