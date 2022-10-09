@@ -38,10 +38,13 @@ const  Comunity = ({userObj})=> {
             time: `${hours}:${min}`,
             creatorId: userObj.email
         })
+        console.log(write)
         setWrite("")
     }
 
     return (
+        // textarea 최대 42글자까지 가능하게 만들기
+        // 만약 40자가 넘으면 저절로 줄바꿈 처리
         <div>
             <div className='comunity'>
                 <StyledAllwaysScrollSection>
