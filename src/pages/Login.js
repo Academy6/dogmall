@@ -1,10 +1,20 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import '../scss/Link.css'
+import { Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Form, Input } from 'antd';
+
+
+
+
 
 const Login = ()=> {
+    
+    const onFinish = (values) => {
+        console.log('Received values of form: ', values);
+      };
     const [loginID, setLoginID] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
     const [error, setError] = useState('')
@@ -60,18 +70,57 @@ const Login = ()=> {
         e.preventDefault()
     }
     return (
-        <div>
-            Log In TEST
-            <form onSubmit={onSubmit}>
-                <input type='text' placeholder='아이디' name='Id' onChange={onChange} value={loginID} required  />   
-                <input type='password' placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required />
-                <button onClick={OnClickLog}>로그인</button>
-                {error}
-            </form>
-
-            <p>아직 회원이 아니라면? <Link to='/signup' className='text-link'>회원가입</Link></p>
+        <div className='login'>
+            <Form
+            id='login-form'
+            name="normal_login"
+            initialValues={{
+                remember: true,
+            }}
+            onSubmit={onSubmit}
+            onFinish={onFinish}
+            >
+                <Form.Item
+                    name="username"
+                    rules={[
+                    {
+                        required: true,
+                        message: 'ID를 입력하세요',
+                    },
+                    ]}
+                >
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder='아이디' name='Id' onChange={onChange} value={loginID} required />
+                </Form.Item>
+                <Form.Item
+                    name="password"
+                    rules={[
+                    {
+                        required: true,
+                        message: 'Password확인해주세요',
+                    },
+                    ]}
+                >
+                    <Input
+                    prefix={<LockOutlined className="site-form-item-icon" />}
+                    type="password"
+                    placeholder='비밀번호' name='Password' onChange={onChange} value={loginPassword} required
+                    />
+                </Form.Item>
+                <Form.Item>
+                    <Form.Item name="remember" valuePropName="checked" noStyle>
+                    <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+                    <Link to='/signup' className='login-form-forgot'>회원가입</Link>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="login-form-button" onClick={OnClickLog}>
+                    Login
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
+        
     );
 }
 
-export default Login;
+export default Login
