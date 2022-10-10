@@ -42,7 +42,6 @@ const Router = ()=> {
 				<Route path="/Cart/:5" element={<Cart userObj={userObj} />} />
                 <Route path="/comunity/:4" element={<Comunity userObj={userObj}/>} />
             </Routes>
-            <Footer />
         </BrowserRouter>
     );
 }
