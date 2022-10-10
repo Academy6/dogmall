@@ -1,5 +1,5 @@
 import { Form, Divider, Input, Button, Result } from 'antd';
-// import '../scss/upload.css';
+import '../scss/upload.scss';
 import 'antd/dist/antd.min.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react';
@@ -105,9 +105,11 @@ const Upload = ({userObj}) => {
                 />
                 </Form.Item>
                 <Form.Item>
-                    <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
-                        상품등록하기
-                    </Button>
+                    <div id='upload-button-container'>
+                        <Button id="submit-button" size="large" htmlType='submit' onClick={onClick} >
+                            상품등록하기
+                        </Button>
+                    </div>
                 </Form.Item>
             </Form>
         </div>

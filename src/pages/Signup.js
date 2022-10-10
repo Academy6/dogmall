@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { dbService } from '../fbase';
-import '../css/Link.css'
+import '../scss/Link.css'
   
 
 const Signup = ()=> {
@@ -163,8 +163,8 @@ const Signup = ()=> {
     }
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <ul>
+            <form className='sinup-container' onSubmit={onSubmit}>
+                <ul className='signup'>
                     <li>
                         <input className={blankId ? 'blank' : 'no_blank'} type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
                         <button onClick={duplicateCheck}>{sameId ? '사용 가능한 아이디' : '중복 체크'}</button>
@@ -180,9 +180,13 @@ const Signup = ()=> {
                     </li>
                 </ul>
                 {error}
-                <button id='createBtn' onClick={onClick} name='click'>생성</button>
+                <div id='createBtn'>
+                    <button id='create-user-button' onClick={onClick} name='click'>생성</button>
+                </div>
             </form>
-            <p>이미 회원이면? <Link to='/login' className='text-link'>로그인</Link></p>
+            <div id='usered'>
+                <p id='usered'>이미 회원이면? <Link to='/login' className='text-link'>로그인</Link></p>
+            </div>
         </div>
     );
 }

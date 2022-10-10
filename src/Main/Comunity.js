@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { dbService } from '../fbase'
 import styled from 'styled-components';
 import WriteButton from './WriteButton';
-import "../css/comunity.css"
+import "../scss/comunity.css"
 
 const  Comunity = ({userObj})=> {
     const [write, setWrite] = useState("")
@@ -56,8 +56,8 @@ const  Comunity = ({userObj})=> {
                 </StyledAllwaysScrollSection>
             </div>
             <form onSubmit={onSubmit}>
-                <textarea className='Chat' rows={1} value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
-                <button className='Chat' onClick={onClick}>작성</button>
+                <textarea className='Chat chat-input' rows={1} value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
+                <button className='Chat chat-button' onClick={onClick}>작성</button>
             </form>
         </div>
     );
@@ -65,7 +65,7 @@ const  Comunity = ({userObj})=> {
 const StyledAllwaysScrollSection = styled.div`
     overflow: scroll;
     height: 500px;
-    width: 400px;
+    width: 100%;
     &::-webkit-scrollbar {
         width: 8px;
         height: 8px;
