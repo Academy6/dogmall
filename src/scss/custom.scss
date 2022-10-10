@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .inner {
   width: 100%;
   margin: 0 auto;
@@ -5,11 +10,6 @@
 body {
   position: relative;
   border-style: rgb(194, 187, 187);
-}
-#header {
-  // position: fixed;
-  // border: 1px solid yellow;
-  // z-index: 20;
 }
 #header ul {
   display: flex;
@@ -30,12 +30,13 @@ body {
 }
 
 /* main-bg */
-#main-bg {
-  border: 1px solid red;
+.cotentStyle {
   width: 100%;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
+  height: 400px;
+  color: #fff;
+  line-height:'400p';
+  text-align: center;
+  background: #364d79;
 }
 /* 베스트 상품 */
 .bestGoodsContainer {
@@ -57,9 +58,13 @@ body {
 }
 @media only screen and (min-width: 768px) {
   /* 태블릿 CSS */
-  #main-bg {
+  .cotentStyle {
     width: 100%;
-    height: 400px;
+    height: 100%;
+    color: #fff;
+    line-height:'400p';
+    text-align: center;
+    background: #364d79;
   }
   .title-bestgoods {
     display: flex;
@@ -70,7 +75,8 @@ body {
   .bestGoodsContainer {
     list-style: none;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
+    flex-wrap: wrap;
     padding: 0;
     margin: 0 auto;
     margin-block-start: 0;
@@ -78,9 +84,8 @@ body {
   .BestGoodsItem-right {
     justify-content: space-between;
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     width: 90%;
-    height: 400px;
     margin: 0 auto;
     margin-top: 2rem;
     box-shadow: 0 2px 6px #333;
@@ -90,9 +95,8 @@ body {
   .BestGoodsItem-left {
     justify-content: flex-start;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 90%;
-    height: 50%;
     margin: 0 auto;
     margin-top: 2rem;
     box-shadow: 0 2px 6px #333;
@@ -109,6 +113,51 @@ body {
   .itemContainer {
     padding: 1rem;
     width: 70%;
-    text-align: start;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .bestGoodsContainer {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0 auto;
+    margin-block-start: 0;
+  }
+  .BestGoodsItem-right {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0 2px 6px #333;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .BestGoodsItem-left {
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0 2px 6px #333;
+    border-radius: 12px;
+    overflow: hid;
+  }
+  .descriptionBox {
+    border: 1px solid purple;
+    width: 100%;
+    height: 300px;
+    background-color: whitesmoke;
+    box-shadow: 0 2px 6px #333;
+  }
+  .itemContainer {
+    padding: 1rem;
+    width: 70%;
+    text-align: center;
   }
 }
