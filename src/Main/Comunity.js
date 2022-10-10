@@ -46,16 +46,18 @@ const  Comunity = ({userObj})=> {
         // textarea 최대 42글자까지 가능하게 만들기
         // 만약 40자가 넘으면 저절로 줄바꿈 처리
         <div>
-            <div className='comunity'>
-                <StyledAllwaysScrollSection>
-                    <div>
-                        {writes.sort((a,b) => a.createdAt - b.createdAt).map((write)=> (
-                            <WriteButton userObj={userObj} key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
-                        ))}
-                    </div>
-                </StyledAllwaysScrollSection>
+            <div className='input-community'>
+                <div className='comunity'>
+                    <StyledAllwaysScrollSection>
+                        <div>
+                            {writes.sort((a,b) => a.createdAt - b.createdAt).map((write)=> (
+                                <WriteButton userObj={userObj} key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
+                            ))}
+                        </div>
+                    </StyledAllwaysScrollSection>
+                </div>
             </div>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="chat-container">
                 <textarea className='Chat chat-input' rows={1} value={write} onChange={onChange} type='text' placeholder='작성해주세요' maxLength={200} />
                 <button className='Chat chat-button' onClick={onClick}>작성</button>
             </form>
