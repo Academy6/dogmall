@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { dbService } from '../fbase'
 import { getStorage, ref, getDownloadURL } from 'firebase/storage'
-import Slider from "react-slick";
 import bg from './bg.jpg'
+import bg2 from './bg2.jpg'
+import bg3 from './bg3.jpg'
 import '../scss/custom.scss'
+import { Carousel } from 'antd';
 
 const Main = (props) => {
   const storage = getStorage()
-
   const [goodsArray, setGoodsArray] = useState([])
   useEffect(() => {
     dbService.collection('goodsInfo').onSnapshot((snapshot) => {
@@ -20,22 +21,25 @@ const Main = (props) => {
       setGoodsArray(goodsInfoArray) //새로 만들어진 파일을 생성
     })
   }, [])
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
   return (
     <div>
       {/* Main-bg */}
-      <img id="main-bg" className="main-bg" src={bg}></img>
+      <Carousel autoplay>
+        <div>
+          <h3 className='contentStyle'><img src={bg}height='100%' width='100%'></img></h3>
+        </div>
+        <div>
+          <h3 className='contentStyle'><img src={bg2}height='100%' width='100%' /></h3>
+        </div>
+        <div>
+          <h3 className='contentStyle'><img src={bg3}height='100%' width='100%' /></h3>
+        </div>
+      </Carousel>
       <div>
         <div>
-          <div className="descriptionBox">
+          {/* <div className="descriptionBox">
             <h2>애완동물들의 쇼핑몰</h2>
-          </div>
+          </div> */}
           <div>
             <div className='title-bestgoods'>
               <span>베스트 상품</span>
@@ -43,14 +47,12 @@ const Main = (props) => {
             {/* 작업 
                     1. 기본와꾸 => 애니메이션
                     2. 큰것부터 작은거*/}
-            <Slider {...settings}>
               <ul id='best-goods' className="bestGoodsContainer">
                 {goodsArray
                   .sort((a, b) => a.createdAt - b.createdAt)
                   .map((data, index) => (
                     <li className="BestGoods" key={index}>
                       <div className={'BestGoods' + index}>
-                        {console.log(index % 2)}
                         <ul
                           className={
                             index % 2 == 1
@@ -71,7 +73,6 @@ const Main = (props) => {
                     </li>
                   ))}
               </ul>
-            </Slider>
           </div>
         </div>
       </div>
