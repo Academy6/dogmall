@@ -4,9 +4,11 @@ import Footer from '../Footer/footer';
 
 function App() {
   return (
-    <div>
-      <Router />
-      <Footer />
+    <div className='wrapper'>
+      <div className='contentWrapper'>
+        <Router />
+      </div>
+        <Footer />
     </div>
   );
 }

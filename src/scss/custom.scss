@@ -25,6 +25,7 @@ body {
   bottom: 0px;
   height: 40px;
   width: 100%;
+  text-align: center;
   background: #454f51;
   color: white;
 }
@@ -41,7 +42,7 @@ body {
 /* 베스트 상품 */
 .bestGoodsContainer {
   list-style: none;
-  width: 370px;
+  width: 100%;
 }
 .descriptionBox {
   height: 450px;

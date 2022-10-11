@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
 import styled from 'styled-components';
-
+import { Card, Col } from 'antd';
 
 const Product2 = ({userObj}) => {
     const [goodsArray, setGoodsArray] = useState([])
+    const { Meta } = Card;
     useEffect(()=> {
         dbService.collection('goodsInfo').onSnapshot(snapshot=> {
             const goodsInfoArray = snapshot.docs.map((doc)=> ({
@@ -32,14 +33,22 @@ const Product2 = ({userObj}) => {
                         <p>상품보기 페이지</p>
                         {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
                             <div key={index}>
-                                <ul>
+                                {/* <ul>
                                     <li><img src={data.fileUrl} width={50} height={50} /></li>
                                     <li>{data.text.seller}님</li>
                                     <li>{data.text.name}</li>
                                     <li>{data.text.price}원</li>
                                     <li>{data.text.description}</li>
                                     <li><button onClick={onClick.bind(null, data)}>장바구니</button></li>
-                                </ul>
+                                </ul> */}
+                                <Col>
+                                <Card hoverable style={{ width: 240 }} cover={<img alt="example" src={data.fileUrl} />} >
+                                     <Meta title={data.text.name} />
+                                     <Meta title={data.text.seller} />
+                                     <Meta title={data.text.price} />
+                                     <Meta title={data.text.description} />
+                                </Card>
+                                </Col>
                             </div>
                         ))}
                     </div>
