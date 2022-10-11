@@ -3,10 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-.inner {
-  width: 100%;
-  margin: 0 auto;
-}
 body {
   position: relative;
   border-style: rgb(194, 187, 187);
@@ -17,7 +13,34 @@ body {
 #header ul li {
   padding: 0 5px;
 }
-
+/* 메뉴바 */
+.no-bar {
+  display: none;
+}
+.bavBar_icons {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+.active-bar {
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+  position: relative;
+  background: #e2e0e0;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+.hidden-bar {
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+  position: absolute;
+  background: #e2e0e0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 5000ms , visibility 5000ms;
+}
 /* // footer */
 
 #main-footer {
@@ -147,7 +170,7 @@ body {
     margin-top: 2rem;
     box-shadow: 0 2px 6px #333;
     border-radius: 12px;
-    overflow: hid;
+    overflow: hidden;
   }
   .descriptionBox {
     border: 1px solid purple;

@@ -39,31 +39,6 @@ li {
     width: 100%;
 }
 /*----------------------------------------------*/
-/*--------------------------------------------- */
-.inner {
-    display: none;
-}
-.bar {
-    display: flex;
-    justify-content: flex-end;
-}
-.bavBar_icons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 1px solid #ff0000;
-    width: 30px;
-    height: 30px;
-    margin-bottom: 20px;
-}
-.bavBar_icons li {
-    border-bottom: 5px solid #000;
-    display: block;
-}
-
-
-
-/*--------------------------------------------- */
 input {
     width: 150px;
 }
