@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../fbase'
 import '../scss/custom.scss'
-import {AlignCenterOutlined} from '@ant-design/icons'
+import { MenuOutlined, CloseOutlined } from '@ant-design/icons'
 
 
 const Header = ({isLoggedIn})=> {
@@ -54,9 +54,6 @@ const Header = ({isLoggedIn})=> {
                                     {/* <li>{init ? <Router isLoggedIn={isLoggedIn} /> : '!'}</li> */}
                                     <li className="navBar_menus_menu"><NavLink onClick={onClickLogOut} className='text-link'>logout</NavLink></li>
                                 </ul>
-                                <ul className="bavBar_icons">
-                                    <AlignCenterOutlined />
-                                </ul>
                             </div>
                     ) : (
                         <div>
@@ -73,7 +70,7 @@ const Header = ({isLoggedIn})=> {
                     {isToggled ? (
                         <div>
                             <ul className="bavBar_icons">
-                                 <AlignCenterOutlined onClick={onClickBar} />
+                                {isToggled ? <CloseOutlined onClick={onClickBar} /> : <MenuOutlined onClick={onClickBar} />}
                             </ul>
                             <div className={isToggled ? 'active-bar' : 'hidden-bar'}>
                                 {isLoggedIn ? (
@@ -102,7 +99,7 @@ const Header = ({isLoggedIn})=> {
                     ) : (
                         <div>
                             <ul className="bavBar_icons">
-                                 <AlignCenterOutlined onClick={onClickBar} />
+                                {isToggled ? <CloseOutlined onClick={onClickBar} /> : <MenuOutlined onClick={onClickBar} />}
                             </ul>
                         </div>
                     )}
