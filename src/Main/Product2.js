@@ -42,12 +42,12 @@ const Product2 = ({userObj}) => {
                                     <li><button onClick={onClick.bind(null, data)}>장바구니</button></li>
                                 </ul> */}
                                 <Col>
-                                <Card hoverable style={{ width: 240 }} cover={<img alt="example" src={data.fileUrl} />} >
-                                     <Meta title={data.text.name} />
-                                     <Meta title={data.text.seller} />
-                                     <Meta title={data.text.price} />
-                                     <Meta title={data.text.description} />
-                                </Card>
+                                    <Card hoverable style={{ width: 240 }} cover={<img alt="example" src={data.fileUrl} />} >
+                                        <Meta title={data.text.name} />
+                                        <Meta title={data.text.seller} />
+                                        <Meta title={data.text.price} />
+                                        <Meta title={data.text.description} />
+                                    </Card>
                                 </Col>
                             </div>
                         ))}
