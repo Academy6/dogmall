@@ -55,26 +55,48 @@ input {
 .notUser {
     text-align: left;
 }
-.Chat2 div {
+.Chat2-user {
+    display: flex;
+    justify-content: flex-end;
+}
+.Chat2-not-user {
+    display: flex;
+    justify-content: flex-start;
+}
+.chat-border {
+    display: inline-block;
+    justify-content: flex-end;
     border: 1px solid #000;
-    border-radius: 15px;
-    background-color: #e6dc54;
+    border-radius: 10px;
+    background-color: rgb(226, 234, 162);
 }
-.Chat2 h3, span {
-    display: inline;
-    vertical-align: middle;
+.chat-border-not-user {
+    display: inline-block;
+    justify-content: flex-start;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: rgb(228, 237, 159);
 }
-.Chat2 span {
+.Chat2-user span {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: 5px;
+    font-size: 10px;
+    color: #808080;
+}
+.Chat2-not-user span {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
     margin-right: 5px;
     font-size: 10px;
     color: #808080;
 }
 .chatUser {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 50px;
     white-space: pre-wrap;
+    padding: 2px;
 }
 .blank {
     border-color: red;
