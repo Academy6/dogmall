@@ -43,7 +43,7 @@ const Header = ({isLoggedIn})=> {
                             </div>
                     ) : (
                         <div>
-                            <ul>
+                            <ul className="navBar_menus">
                                 <li className="navBar_menus_menu"><NavLink to ='/product2/3' className='text-link'>상품보기</NavLink></li>
                                 {/* <li>{init ? <Router isLoggedIn={isLoggedIn} /> : '!'}</li> */}
                                 <li className="navBar_menus_menu"><NavLink to="/login" className='text-link'>login</NavLink></li>
