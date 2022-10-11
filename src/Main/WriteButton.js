@@ -58,7 +58,7 @@ const WriteButton = ({ writeObj, isOwner, userObj })=> {
                        {isUser ? (
                             <div className='Chat2'>
                                 <span>{writeObj.newTime} {writeObj.time}</span>
-                                <h3 className='chatUser'>{writeObj.text}</h3>
+                                <div className='chatUser'><h3>{writeObj.text}</h3></div>
                             </div> 
                        ) : (
                             <div className='Chat2'>
