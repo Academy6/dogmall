@@ -146,7 +146,7 @@ const Signup = ()=> {
                         .catch((error)=> {
                             setError(error.message)
                         })
-                        navigate('/login')
+                        navigate('/')
                     } else if (regexId.test(newId) === false && regexPassword.test(newPassword) === true) {
                         event.preventDefault()
                         alert(`아이디를 다시 입력하세요`)
