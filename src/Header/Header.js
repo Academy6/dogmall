@@ -13,22 +13,8 @@ const Header = ({isLoggedIn})=> {
     const onClickLogOut = ()=> {
         authService.onAuthStateChanged((user)=> {
             if(user) {
-                navigate("/")
                 authService.signOut()
-            }
-        })
-    }
-    const onClickFunc = ()=> {
-        authService.onAuthStateChanged((user)=> {
-            if (user) {
-
-            } else {
-                const ok = window.confirm(`로그인이 필요한 화면입니다. 로그인하시겠습니까?`)
-                if (ok === true) {
-                    navigate('/login')
-                } else {
-                    navigate('/')
-                }
+                navigate("/")
             }
         })
     }
@@ -66,7 +52,7 @@ const Header = ({isLoggedIn})=> {
                         </div>
                     )}
                 </div>
-                <div>
+                <div className='is-bar'>
                     {isToggled ? (
                         <div>
                             <ul className="bavBar_icons">
