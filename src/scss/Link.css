@@ -55,6 +55,11 @@ input {
 .notUser {
     text-align: left;
 }
+.Chat2 div {
+    border: 1px solid #000;
+    border-radius: 15px;
+    background-color: #e6dc54;
+}
 .Chat2 h3, span {
     display: inline;
     vertical-align: middle;
@@ -65,8 +70,11 @@ input {
     color: #808080;
 }
 .chatUser {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     width: 50px;
-    border: 1px solid #ff0000;
+    white-space: pre-wrap;
 }
 .blank {
     border-color: red;

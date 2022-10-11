@@ -141,6 +141,21 @@ body {
   }
 }
 @media only screen and (min-width: 1200px) {
+  .no-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  .navBar_menus {
+    margin-right: 50px;
+  }
+  .navBar_menus li{
+    display: inline;
+    padding-right: 5px;
+  }
+  .is-bar {
+    display: none;
+  }
   .bestGoodsContainer {
     list-style: none;
     display: flex;
