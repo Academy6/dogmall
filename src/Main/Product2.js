@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
 import styled from 'styled-components';
-import { Card, Col } from 'antd';
+import { Card, Col, Button } from 'antd';
 
 const Product2 = ({userObj}) => {
     const [goodsArray, setGoodsArray] = useState([])
@@ -47,6 +47,7 @@ const Product2 = ({userObj}) => {
                                         <Meta title={data.text.seller} />
                                         <Meta title={data.text.price} />
                                         <Meta title={data.text.description} />
+                                        <Button block onClick={onClick.bind(null, data)}>바구니추가하기</Button>
                                     </Card>
                                 </Col>
                             </div>
@@ -54,12 +55,6 @@ const Product2 = ({userObj}) => {
                     </div>
                 </StyledAllwaysScrollSection>
             </div>
-            {/* <div>
-                <p>상품보기 페이지</p>
-                {goodsArray.map((data,index)=> (
-                    <div key={index}>{data.text.seller}님</div>
-                ))}
-            </div> */}
         </div>
     );    
 }
