@@ -26,6 +26,7 @@ const  Comunity = ({userObj})=> {
     const onSubmit = (e)=> {
         e.preventDefault();
     }
+    
     const onChange = (event)=> {
         const {target : {value}} = event
         setWrite(value)
