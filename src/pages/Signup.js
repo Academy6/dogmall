@@ -148,16 +148,17 @@ const Signup = ()=> {
                     if (regexId.test(newId) === true && regexPassword.test(newPassword) === true) {
                         createUserWithEmailAndPassword(auth, newId, newPassword)
                         .then((userCredential)=> {
+                            console.log(userCredential)
                             dbService.collection('userInfo').add({
                                 id: newId,
                                 password: newPassword,
                                 nickName: name
                             })
                         })
+                        navigate('/')
                         .catch((error)=> {
                             setError(error.message)
                         })
-                        navigate('/')
                     } else if (regexId.test(newId) === false && regexPassword.test(newPassword) === true) {
                         event.preventDefault()
                         alert(`아이디를 다시 입력하세요`)
@@ -191,7 +192,7 @@ const Signup = ()=> {
                 <ul className='signup'>
                     <li>
                         <input className={blankId ? 'blank' : 'no_blank'} type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
-                        <button onClick={duplicateCheck}>{sameId ?  '사용 가능' : '중복 확인'}</button>
+                        {sameId ? <button onClick={duplicateCheck}>사용 가능</button> : <button onClick={duplicateCheck}>중복 확인</button>}
                     </li>
                     <li>
                         <input className={blankName ? 'blank' : 'no_blank'} name='name' type='text' placeholder='이름' value={name} onChange={onChange}/>
