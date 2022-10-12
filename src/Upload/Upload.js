@@ -64,8 +64,7 @@ const Upload = ({userObj}) => {
                 <Form.Item name="fileName"
                     label={<div className='upload-label'>상품사진</div>}>
                     <div id="upload-img-placeholder">
-                        <img src="images/icons/camera.png" alt="" />
-                        {file ?  <img src={file} width={50} height={50} /> : <span>이미지를 업로드 해주세요.</span>}
+                        {file ?  <img src={file} /> : <span>이미지를 업로드 해주세요.</span>}
                         <input type="file"  name="fileName"  onChange={onChangeImage}  />
                     </div>
                 </Form.Item>
