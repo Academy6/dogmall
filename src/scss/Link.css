@@ -19,9 +19,10 @@ li {
     border-radius: 15px;
     padding: 10px;
     overflow: hidden;
-    max-width: 300px;
+    width: 70%;
     display: flex;
     margin: 0 auto;
+    margin-top: 100px;
     flex-direction: column;
 }
 .login-form-forgot {
@@ -32,6 +33,21 @@ li {
 }
 .login-form-button {
     width: 100%;
+}
+.normal_login {
+    padding: 0;
+}
+#signup-form {
+    box-shadow: 0 2px 6px #333;
+    border-radius: 15px;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    width: 50%;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 50px;
+    flex-direction: column;
 }
 /*----------------------------------------------*/
 input {
@@ -61,6 +77,7 @@ input {
 .chat-border {
     display: inline-block;
     justify-content: flex-end;
+    text-align: center;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: rgb(226, 234, 162);
@@ -68,6 +85,7 @@ input {
 .chat-border-not-user {
     display: inline-block;
     justify-content: flex-start;
+    text-align: center;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: rgb(228, 237, 159);
@@ -92,6 +110,7 @@ input {
     display: flex;
     white-space: pre-wrap;
     padding: 2px;
+    margin: 0;
 }
 .blank {
     border-color: red;
@@ -123,7 +142,17 @@ input {
     height: 40px;
 }
 #usered {
-    padding-left: 44px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    font-size: 15px;
+}
+#usered p {
+    vertical-align: middle;
+    font-size: 15px;
+    padding-left: 5px;
 }
 @media only screen and (min-width: 768px) {  
     /* 태블릿 CSS */

@@ -26,3 +26,19 @@
     display: flex;
     justify-content: center;
 }
+.test {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid #ff0000;
+    row-gap: 30px;
+    
+}
+.card {
+    width: 260px;
+    height: 310px;
+}
+.card img{
+    width: 260px;
+    height: 150px;
+}
