@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { dbService } from '../fbase';
+import '../scss/upload.scss'
 import styled from 'styled-components';
-import { Card, Col, Button } from 'antd';
+import { Card, Col, Button, Row } from 'antd';
 
 const Product2 = ({userObj}) => {
     const [goodsArray, setGoodsArray] = useState([])
@@ -28,9 +29,9 @@ const Product2 = ({userObj}) => {
     return (
         <div>
             <div>
-                <StyledAllwaysScrollSection>
                     <div>
                         <p>상품보기 페이지</p>
+                        <Row className='test'>
                         {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
                             <div key={index}>
                                 {/* <ul>
@@ -41,19 +42,20 @@ const Product2 = ({userObj}) => {
                                     <li>{data.text.description}</li>
                                     <li><button onClick={onClick.bind(null, data)}>장바구니</button></li>
                                 </ul> */}
-                                <Col>
-                                    <Card hoverable style={{ width: 240 }} cover={<img alt="example" src={data.fileUrl} />} >
-                                        <Meta title={data.text.name} />
-                                        <Meta title={data.text.seller} />
-                                        <Meta title={data.text.price} />
-                                        <Meta title={data.text.description} />
-                                        <Button block onClick={onClick.bind(null, data)}>바구니추가하기</Button>
-                                    </Card>
-                                </Col>
+                                    <Col>
+                                        <Card hoverable className='card' cover={<img alt="example" src={data.fileUrl} />} >
+                                            <Meta title={data.text.name} />
+                                            <Meta title={data.text.seller} />
+                                            <Meta title={data.text.price} />
+                                            <Meta title={data.text.description} />
+                                            <Button block onClick={onClick.bind(null, data)}>바구니추가하기</Button>
+                                        </Card>
+                                    </Col>
+                         
                             </div>
                         ))}
+                        </Row>
                     </div>
-                </StyledAllwaysScrollSection>
             </div>
         </div>
     );    
@@ -63,6 +65,7 @@ export default Product2;
 
 const StyledAllwaysScrollSection = styled.div`
     overflow: scroll;
+    width: 100%;
     height: 500px;
     &::-webkit-scrollbar {
         width: 8px;
