@@ -136,25 +136,31 @@ body {
   }
   .no-bar {
     display: flex;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
     flex-direction: column;
-    align-content: center;
-    justify-content: space-between;
-  }
-  .navBar_main {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 0;
-    justify-items: center;
-    margin-left: 5px;
   }
   .navBar_menus {
-    margin-bottom: 0;
-    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #00ffff;
   }
-  .navBar_menus li{
-    display: inline-flex;
-    flex-direction: column;
-    padding-right: 10px;
+  .center-menus {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+  }
+  .end-menus {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+  }
+  .end-menus div:last-child {
+    margin-right: 20px;
   }
   .is-bar {
     display: none;
