@@ -9,11 +9,6 @@ li {
     color: #000;
     text-decoration: none;
 }
-.navbar {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom: 15px;
-}
 .petshop {
     margin-left: 5px;
     font-size: 1rem;
@@ -137,13 +132,6 @@ input {
     }
     .nav {
         width: 100%;
-    }
-    .navbar {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .navbar li {
-        margin-right: 15px;
     }
     .text-link {
         font-size: 1.2rem;

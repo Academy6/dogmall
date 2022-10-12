@@ -7,17 +7,15 @@ body {
   position: relative;
   border-style: rgb(194, 187, 187);
 }
-#header ul {
-  display: flex;
-}
-#header ul li {
-  padding: 0 5px;
-}
 .contentStyle {
   width: 100%;
   height: 150px;
 }
 /* 메뉴바 */
+#navBar_main {
+  position: fixed;
+  border: 1px solid #ff0000;
+}
 .no-bar {
   display: none;
 }
