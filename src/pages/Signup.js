@@ -33,17 +33,28 @@ const Signup = ()=> {
             setNewPassword(value)
         }
     }
+    
     useEffect(()=> {
+        dbService.collection("userInfo").onSnapshot(snapshot=> {
+            const userInfoArray = snapshot.docs.map((doc)=> ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setUserInfo(userInfoArray)
+        })
+        userInfo.map((data)=> {
+            if (newId === data.id) {
+                setSameId(false)
+            } else if (newId !== data.id) {
+                setSameId(true)
+            }
+        })
         if (newPassword !== checkPassword) {
             setSamePwd(false)
-            console.log(`비번이 다르다`)
-            console.log(samePwd)
         } else if (newPassword === checkPassword) {
             setSamePwd(true)
-            console.log(`비번이 맞다`)
         }
-    }, [checkPassword])
-    console.log(samePwd)
+    }, [checkPassword || newId])
     const onChange = async(e)=> {
         const {target: {value, name}} = e
         if (name === "name") {
@@ -162,24 +173,14 @@ const Signup = ()=> {
             } 
         }
     }
-    const duplicateCheck = ()=> {
+    const duplicateCheck = (e)=> {
         if (newId === "") {
             alert('아이디를 입력해주세요')
         } else {
-            dbService.collection("userInfo").onSnapshot(snapshot=> {
-                const userInfoArray = snapshot.docs.map((doc)=> ({
-                    id: doc.id,
-                    ...doc.data()
-                }))
-                setUserInfo(userInfoArray)
-            })
             userInfo.map((data)=> {
                 if (newId === data.id) {
-                    setSameId(false)
-                    alert('이미 사용중인 아이디입니다')
                     setNewId("")
                 } else if (newId !== data.id) {
-                    setSameId(true)
                 }
             })
         }
@@ -190,7 +191,7 @@ const Signup = ()=> {
                 <ul className='signup'>
                     <li>
                         <input className={blankId ? 'blank' : 'no_blank'} type='text' name='newId' value={newId} onChange={CreateNewAccount} placeholder='아이디' required/>
-                        <button onClick={duplicateCheck}>중복 체크</button>
+                        <button onClick={duplicateCheck}>{sameId ?  '사용 가능' : '중복 확인'}</button>
                     </li>
                     <li>
                         <input className={blankName ? 'blank' : 'no_blank'} name='name' type='text' placeholder='이름' value={name} onChange={onChange}/>
