@@ -36,8 +36,8 @@ const Header = ({isLoggedIn})=> {
     {/* Navbar */}
     
             <nav id="navbar" className="navBar">
-                <h1 className='navBar_main'><NavLink to ='/' className='text-link'>PetShop</NavLink></h1>
                 <div className='no-bar'>
+                    <NavLink to ='/' className='text-link'><h1 className='navBar_main'>PetShop</h1></NavLink>
                     {isLoggedIn ? (
                             <div>
                                 <ul className="navBar_menus">
@@ -61,6 +61,7 @@ const Header = ({isLoggedIn})=> {
                     )}
                 </div>
                 <div className='is-bar'>
+                    <NavLink to ='/' className='text-link'><h1 className='navBar_main'>PetShop</h1></NavLink>
                     {isToggled ? (
                         <div>
                             <ul className="bavBar_icons">
