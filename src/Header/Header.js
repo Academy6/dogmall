@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../fbase'
@@ -9,12 +9,20 @@ import { MenuOutlined, CloseOutlined } from '@ant-design/icons'
 const Header = ({isLoggedIn})=> {
     const navigate = useNavigate()
     const [isToggled, setIsToggled] = useState(false);
-
+    useEffect(()=> {
+        authService.onAuthStateChanged((user)=> {
+            if(user) {
+                console.log('유저 정보 있음')
+            } else if (user === null) {
+                console.log('유저 정보 없음')
+            }
+        })
+    }, [])
     const onClickLogOut = ()=> {
         authService.onAuthStateChanged((user)=> {
             if(user) {
-                authService.signOut()
                 navigate("/")
+                authService.signOut()
             }
         })
     }
