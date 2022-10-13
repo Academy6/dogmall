@@ -39,7 +39,7 @@ const Product2 = ({userObj}) => {
             <div>
                 <div>
                     <p>상품보기 페이지</p>
-                    <Row className='test'>
+                    <Row className='test' id='ant-row'>
                         {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
                             <div className='card-div' key={index}>
                                 {/* <ul>

@@ -29,6 +29,9 @@
     display: flex;
     justify-content: center;
 }
+#ant-row {
+    display: grid;
+}
 .ant-col {
     width: 260px;
 }
