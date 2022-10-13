@@ -90,21 +90,25 @@ input {
     border-radius: 10px;
     background-color: rgb(228, 237, 159);
 }
-.Chat2-user span {
+.time-is-users {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
     justify-content: flex-end;
-    margin-right: 5px;
+    margin-right: 10px;
     font-size: 10px;
     color: #808080;
 }
-.Chat2-not-user span {
+.time-not-users {
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    margin-right: 5px;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-right: 10px;
     font-size: 10px;
     color: #808080;
+}
+.time-is-users span:first-child, .time-not-users span:first-child {
+    color: yellow;
+    font-size: 9px;
 }
 .chatUser {
     display: flex;
