@@ -79,7 +79,6 @@ input {
 .chat-border {
     display: flex;
     justify-content: flex-end;
-    text-align: center;
     border: 1px solid #000;
     margin-right: 5px;
     border-radius: 10px;
@@ -88,7 +87,6 @@ input {
 .chat-border-not-user {
     display: inline-block;
     justify-content: flex-start;
-    text-align: center;
     border: 1px solid #000;
     border-radius: 10px;
     margin-left: 5px;
