@@ -1,21 +1,42 @@
 import React, { Component, useEffect, useState } from 'react';
-import { dbService } from '../fbase';
+import { dbService, authService } from '../fbase';
 import '../scss/Link.css'
 
 const WriteButton = ({ writeObj, isOwner, userObj })=> {
     const [editing, setEditing] = useState(false)
     const [newWrite, setNewWrite] = useState(writeObj.text)
     const [isUser, setIsUser] = useState(false)
+    const [users, setUsers] = useState(0)
+    const [userChat, setUserChat] = useState([])
+    const [notUsers, setNotUsers] = useState(false)
     const date = new Date()
-    // console.log(userObj)
     useEffect(()=> {
+
+        dbService.collection('userInfo').onSnapshot(snapshot => {
+            const userArray = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setUserChat(userArray)
+        })
+        const user = authService.currentUser;
+        if (user) {
+            setUsers(userChat.length)
+        } 
         if (writeObj.creatorId === userObj.email) {
             setIsUser(true)
+            setUsers(userChat.length-1)
+            // setUsers(data)
         } else {
             setIsUser(false)
+            setUsers(userChat.length-1)
+        }
+        if (userChat.length === 0) {
+            setNotUsers(true)
+        } else {
+            setNotUsers(false)
         }
     }, [])
-
     const onDeleteClick = async()=> {
         const ok = window.confirm(`정말로 삭제하시겠습니까?`)
         if (ok) {
@@ -57,7 +78,19 @@ const WriteButton = ({ writeObj, isOwner, userObj })=> {
                     <div className={isUser ? 'isUser' : 'notUser'}>
                        {isUser ? (
                             <div className='Chat2-user'>
-                                <span>{writeObj.newTime} {writeObj.time}</span>
+                                <div className='time-is-users'>
+                                    {notUsers ? (
+                                        <>
+                                            <span></span>
+                                            <span>{writeObj.newTime} {writeObj.time}</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>{users}</span>
+                                            <span>{writeObj.newTime} {writeObj.time}</span>
+                                        </>
+                                    )}
+                                </div>
                                 <div className='chat-border'>
                                     <p className='chatUser'>{writeObj.text}</p>
                                 </div>
@@ -67,7 +100,19 @@ const WriteButton = ({ writeObj, isOwner, userObj })=> {
                                 <div className='chat-border-not-user'>
                                     <p className='chatUser'>{writeObj.text}</p>
                                 </div>
-                                <span>{writeObj.newTime} {writeObj.time}</span>
+                                <div className='time-not-users'>
+                                    {notUsers ? (
+                                        <>
+                                            <span></span>
+                                            <span>{writeObj.newTime} {writeObj.time}</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>{users}</span>
+                                            <span>{writeObj.newTime} {writeObj.time}</span>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                        )}
                         {isOwner && (

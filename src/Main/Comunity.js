@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import { useState, useRef } from 'react';
-import { dbService } from '../fbase'
+import { authService, dbService } from '../fbase'
 import styled from 'styled-components';
 import WriteButton from './WriteButton';
 import "../scss/comunity.css"
@@ -8,6 +8,8 @@ import "../scss/comunity.css"
 const  Comunity = ({userObj})=> {
     const [write, setWrite] = useState("")
     const [writes, setWrites] = useState([])
+    const [users, setUsers] = useState(0)
+    const [userChat, setUserChat] = useState([])
     const date = new Date()
     const AmOrPm = parseInt(date.getHours()) <= 12 ? '오전' : '오후'
     const min = String(date.getMinutes()).padStart(2, "0")
@@ -22,7 +24,29 @@ const  Comunity = ({userObj})=> {
             setWrites(writeArray)
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         })
-    }, [write])
+        dbService.collection('userInfo').onSnapshot(snapshot => {
+            const userArray = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setUserChat(userArray)
+        })
+        // userChat.map((data, index)=> {
+        //     const user = authService.currentUser;
+        //     if (user) {
+        //         console.log(data)
+        //     } else {
+        //         setUsers(0)
+        //     }
+        // })
+        const user = authService.currentUser;
+            if (user) {
+                setUsers(userChat.length)
+
+            } else {
+
+            }
+    }, [])
     const onSubmit = (e)=> {
         e.preventDefault();
     }
@@ -62,6 +86,9 @@ const  Comunity = ({userObj})=> {
             <div className='input-community'>
                 <div className='comunity'>
                     <StyledAllwaysScrollSection ref={scrollRef}>
+                        <div className='chat-users'>
+                            <div className='users-number'>{users}명</div>
+                        </div>
                         <div>
                             {writes.sort((a,b) => a.createdAt - b.createdAt).map((write)=> (
                                 <WriteButton userObj={userObj} key={write.id} writeObj={write} isOwner={write.creatorId === userObj.email} />
