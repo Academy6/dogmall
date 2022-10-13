@@ -414,7 +414,7 @@ const Signup = ()=> {
         }
     }
     return (
-        <div>
+        <div className='top-sign'>
             {/* <form className='sinup-container' onSubmit={onSubmit}>
                 <ul className='signup'>
                     <li>
