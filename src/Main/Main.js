@@ -22,7 +22,7 @@ const Main = (props) => {
     })
   }, [])
   return (
-    <div>
+    <div className='mainContainer'>
       {/* Main-bg */}
       <Carousel autoplay>
         <div>
