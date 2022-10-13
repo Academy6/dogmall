@@ -42,3 +42,31 @@
     width: 260px;
     height: 150px;
 }
+.go-cart {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    height: 60px;
+    z-index: 5px;
+    justify-content: space-between;
+    border: 1px solid #000;
+    box-shadow: 3px 3px 3px #808080;
+    border-radius: 5px;
+    background-color: rgb(99, 81, 213);
+    bottom: 100px;
+    left: 30px;
+}
+.go-cart p {
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.go-cart p:last-child {
+    margin-top: 3px;
+}
+.normal-text {
+    font-size: 14px;
+    font-weight: bolder;
+}
