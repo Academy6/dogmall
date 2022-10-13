@@ -29,6 +29,7 @@ const  Comunity = ({userObj})=> {
                 id: doc.id,
                 ...doc.data()
             }))
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
             setUserChat(userArray)
         })
         // userChat.map((data, index)=> {
@@ -39,14 +40,7 @@ const  Comunity = ({userObj})=> {
         //         setUsers(0)
         //     }
         // })
-        const user = authService.currentUser;
-            if (user) {
-                setUsers(userChat.length)
-
-            } else {
-
-            }
-    }, [])
+    }, [write])
     const onSubmit = (e)=> {
         e.preventDefault();
     }
@@ -87,7 +81,6 @@ const  Comunity = ({userObj})=> {
                 <div className='comunity'>
                     <StyledAllwaysScrollSection ref={scrollRef}>
                         <div className='chat-users'>
-                            <div className='users-number'>{users}명</div>
                         </div>
                         <div>
                             {writes.sort((a,b) => a.createdAt - b.createdAt).map((write)=> (
