@@ -18,7 +18,6 @@ const Product2 = ({userObj}) => {
             }))
             setGoodsArray(goodsInfoArray)
         })
-        const alertTimer = setTimeout(()=> { setGoCart(true) }, 3000)
     }, [])//useEffect 의존성배열, 디팬던시
     const onClick = async(data)=> {
         // 내가 넣을 값인지 찍어봐요. 그 값의 타입이 내가 넣으려는 탑인지 확인해ㅑ요
@@ -26,6 +25,7 @@ const Product2 = ({userObj}) => {
         dbService.collection("Cart").add({
             text: data.text.price,
             user: userObj.email,
+            name: data.text.name,
             createdAt: Date.now(),
             img
         })
@@ -41,7 +41,7 @@ const Product2 = ({userObj}) => {
                     <p>상품보기 페이지</p>
                     <Row className='test'>
                         {goodsArray.sort((a,b)=> a.createdAt - b.createdAt).map((data,index)=> (
-                            <div key={index}>
+                            <div className='card-div' key={index}>
                                 {/* <ul>
                                     <li><img src={data.fileUrl} width={50} height={50} /></li>
                                     <li>{data.text.seller}님</li>
@@ -56,7 +56,7 @@ const Product2 = ({userObj}) => {
                                         <Meta title={data.text.seller} />
                                         <Meta title={data.text.price} />
                                         <Meta title={data.text.description} />
-                                        <Button block onClick={onClick.bind(null, data)}>바구니추가하기</Button>
+                                        <Button className='plus-btn' block onClick={onClick.bind(null, data)}>바구니추가하기</Button>
                                     </Card>
                                 </Col>
                              </div>
