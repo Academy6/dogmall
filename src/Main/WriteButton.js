@@ -86,7 +86,7 @@ const WriteButton = ({ writeObj, isOwner, userObj })=> {
                                         </>
                                     ) : (
                                         <>
-                                            <span>{users}</span>
+                                            {/* <span>{users}</span> */}
                                             <span>{writeObj.newTime} {writeObj.time}</span>
                                         </>
                                     )}
@@ -108,7 +108,7 @@ const WriteButton = ({ writeObj, isOwner, userObj })=> {
                                         </>
                                     ) : (
                                         <>
-                                            <span>{users}</span>
+                                            {/* <span>{users}</span> */}
                                             <span>{writeObj.newTime} {writeObj.time}</span>
                                         </>
                                     )}
