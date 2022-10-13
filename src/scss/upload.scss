@@ -89,6 +89,8 @@
     margin: 0 auto;
     margin-top: 10px;
     border: 1px solid #000;
+    border-radius: 10px;
+    overflow: hidden;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -120,6 +122,9 @@
 .cart-info p:first-child {
     color: #808080;
     font-weight: normal;
+}
+.cart-info p:last-child {
+    margin-left: 5px;
 }
 .cart-end {
     margin-right: 50px;
