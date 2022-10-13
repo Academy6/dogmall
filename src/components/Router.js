@@ -34,8 +34,8 @@ const Router = ()=> {
         {init ? <Header isLoggedIn={isLoggedIn} /> : "Initializing..." }
             <Routes>
                 <Route path='/' element={<Main />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/signup' element={<Signup />} />
+                <Route path='/login' element={<Login userObj={userObj} />} />
+                <Route path='/signup' element={<Signup userObj={userObj} />} />
 				<Route path="/product/:1" element={<Product />} />
 				<Route path="/product2/:2" element={<Product2 userObj={userObj} />} />
 				<Route path="/upload/:3" element={<Upload userObj={userObj} />} />
