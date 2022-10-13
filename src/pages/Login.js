@@ -3,6 +3,7 @@ import '../scss/Link.css'
 import { Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { dbService } from '../fbase';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
 
@@ -10,7 +11,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 
 
 
-const Login = ()=> {
+const Login = ({userObj})=> {
     
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
@@ -56,6 +57,9 @@ const Login = ()=> {
             auth.onAuthStateChanged((user)=> {
                 if (user) {
                     navigate('/')
+                    // dbService.collection('loginuser').add({
+                    //     id: loginID
+                    // })
                     console.log('로그인 됨!!')
                 } else if (user === null) {
                     alert('죄송해요 다시 로그인 해주세요.\n일시적 오류입니다.\n계속 안되실경우 로그인 창에서 새로고침 해주세요')
