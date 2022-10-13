@@ -15,7 +15,6 @@ body {
 /* 메뉴바 */
 #navbar {
   width: 100%;
-  height: 100px;
 }
 .no-bar {
   display: none;
@@ -146,6 +145,9 @@ body {
     flex-direction: row;
     justify-content: space-between;
     background-color: #00ffff;
+  }
+  .navBar_main {
+    margin-left: 5px;
   }
   .center-menus {
     margin-top: 10px;
