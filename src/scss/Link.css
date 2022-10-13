@@ -75,12 +75,13 @@ input {
     justify-content: flex-start;
 }
 .chat-border {
-    display: inline-block;
+    display: flex;
     justify-content: flex-end;
     text-align: center;
     border: 1px solid #000;
+    margin-right: 5px;
     border-radius: 10px;
-    background-color: rgb(226, 234, 162);
+    background-color: #ffd400;
 }
 .chat-border-not-user {
     display: inline-block;
@@ -88,7 +89,8 @@ input {
     text-align: center;
     border: 1px solid #000;
     border-radius: 10px;
-    background-color: rgb(228, 237, 159);
+    margin-left: 5px;
+    background-color: #ffd400;
 }
 .time-is-users {
     display: flex;
@@ -113,8 +115,13 @@ input {
 .chatUser {
     display: flex;
     white-space: pre-wrap;
+    text-align: center;
     padding: 2px;
     margin: 0;
+    margin-right: 5px;
+}
+.edit-btn {
+    margin-right: 5px;
 }
 .blank {
     border-color: red;

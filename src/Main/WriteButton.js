@@ -116,7 +116,7 @@ const WriteButton = ({ writeObj, isOwner, userObj })=> {
                             </div>
                        )}
                         {isOwner && (
-                            <div>
+                            <div className='edit-btn'>
                                 <button onClick={toggleEditing}>수정</button>
                                 <button onClick={onDeleteClick}>삭제</button>
                             </div>
