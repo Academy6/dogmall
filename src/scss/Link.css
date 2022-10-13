@@ -106,10 +106,10 @@ input {
     font-size: 10px;
     color: #808080;
 }
-.time-is-users span:first-child, .time-not-users span:first-child {
+/* .time-is-users span:first-child, .time-not-users span:first-child {
     color: yellow;
     font-size: 9px;
-}
+} */
 .chatUser {
     display: flex;
     white-space: pre-wrap;

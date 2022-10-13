@@ -60,7 +60,7 @@ const Upload = ({userObj}) => {
     })
     return (
         <div id="upload-container" className='inner'>      
-            <Form name="productUpload" >  
+            <Form name="productUpload" className='upload-form'>  
                 <Form.Item name="fileName"
                     label={<div className='upload-label'>상품사진</div>}>
                     <div id="upload-img-placeholder">
