@@ -64,9 +64,11 @@ const Main = (props) => {
                             <img src={data.fileUrl} />
                           </li>
                           <li className="itemContainer">
-                            <li><span>상품명:</span> <span>{data.text.name}</span></li>
-                            <li><span>가격:</span> <span>{data.text.price}원</span></li>
-                            <li><span>상품 설명:</span> <span>{data.text.description}</span></li>
+                            <div className='main-info'>
+                              <div><li><div><span>상품명:</span> <span>{data.text.name}</span></div></li></div>
+                              <div><li><div><span>가격:</span> <span>{data.text.price}원</span></div></li></div>
+                              <div><li><div><span>상품 설명:</span> <span>{data.text.description}</span></div></li></div>
+                            </div>
                           </li>
                         </ul>
                       </div>
