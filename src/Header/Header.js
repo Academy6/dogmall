@@ -55,7 +55,6 @@ const Header = ({isLoggedIn})=> {
                             <div className="navBar_menus">
                                 <div className='start-menu'><NavLink to ='/' className='text-link'><h1 className='navBar_main'>PetShop</h1></NavLink></div>
                                 <div className='center-menus'>
-                                    <div><NavLink to ='/upload/2' className='text-link'>상품등록하기</NavLink></div>
                                     <div><NavLink to ='/product2/3' className='text-link'>상품보기</NavLink></div>
                                     <div><NavLink to ='/cart/5' className='text-link'>장바구니</NavLink></div>
                                 </div>

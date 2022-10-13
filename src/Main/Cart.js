@@ -25,7 +25,7 @@ const Cart = ({userObj})=> {
         }
   }
   return(
-    <div>
+    <div className='top-cart'>
       <div className='cart'>
         {cart.sort((a,b)=> a.createdAt - b.createdAt).map((data, index)=> (
           <div key={index}>

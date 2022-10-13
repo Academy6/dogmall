@@ -76,7 +76,7 @@ const  Comunity = ({userObj})=> {
     return (
         // textarea 최대 42글자까지 가능하게 만들기
         // 만약 40자가 넘으면 저절로 줄바꿈 처리
-        <div>
+        <div className='top-community'>
             <div className='input-community'>
                 <div className='comunity'>
                     <StyledAllwaysScrollSection ref={scrollRef}>
