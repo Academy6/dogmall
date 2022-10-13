@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { dbService } from '../fbase'
-import { getStorage, ref, getDownloadURL } from 'firebase/storage'
+import { getStorage } from 'firebase/storage'
 import bg from './bg.jpg'
 import bg2 from './bg2.jpg'
 import bg3 from './bg3.jpg'
