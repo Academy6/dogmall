@@ -1,5 +1,6 @@
 import { dbService } from '../fbase';
 import React, { useEffect, useState } from 'react';
+import '../scss/upload.scss'
 
 const Cart = ({userObj})=> {
   const [cart, setCart] = useState([])
@@ -25,14 +26,25 @@ const Cart = ({userObj})=> {
   }
   return(
     <div>
-      <div>
+      <div className='cart'>
         {cart.sort((a,b)=> a.createdAt - b.createdAt).map((data, index)=> (
           <div key={index}>
-              <ul>
-                <li><img src={data.img} width={50} height={50}/></li>
-                <li>{data.text}원</li>
-                <button onClick={onClick.bind(null, data)}>취소</button>
-              </ul>
+              <div className='cart-start'>
+                <div className='cart-center'>
+                  <div><img src={data.img} width={50} height={50}/></div>
+                  <div className='cart-center-info'>
+                    <div className='cart-info'>
+                      <p>상품명:</p>
+                      <p>{data.name}</p>
+                    </div>
+                    <div className='cart-info'>
+                      <p>가격:</p>
+                      <p>{data.text}원</p>
+                    </div>
+                  </div>
+                </div>
+                <div className='cart-end'><button onClick={onClick.bind(null, data)}>취소</button></div>
+              </div>
           </div>
         ))}
       </div>
